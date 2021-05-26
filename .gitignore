@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 ###> symfony/framework-bundle ###
 /.env.local
@@ -22,6 +23,8 @@ npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
 
+=======
+>>>>>>> b3f5e8eceb0b4120a03e49da677a2ff3eb001d86
 # Cache and logs (Symfony2)
 /app/cache/*
 /app/logs/*
