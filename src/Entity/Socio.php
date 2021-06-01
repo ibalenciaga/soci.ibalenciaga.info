@@ -2,15 +2,21 @@
 
 namespace App\Entity;
 
-use App\Repository\SociosRepository;
+use App\Repository\SocioRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * @ORM\Entity(repositoryClass=SociosRepository::class)
+ * @ORM\Entity(repositoryClass=SocioRepository::class)
  */
-class Socios implements UserInterface
+class Socio implements UserInterface
 {
+    const REGISTRO_OK = 'El socio se ha registrado correctamente';
+
+    public function __construct(){
+        $this->roles = ['ROLE_USER'];    
+    }
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -209,7 +215,7 @@ class Socios implements UserInterface
     /**
      * Get the value of fecha_alta
      */ 
-    public function getFecha_alta()
+    public function getFechaAlta()
     {
         return $this->fecha_alta;
     }
@@ -219,7 +225,7 @@ class Socios implements UserInterface
      *
      * @return  self
      */ 
-    public function setFecha_alta($fecha_alta)
+    public function setFechaAlta($fecha_alta)
     {
         $this->fecha_alta = $fecha_alta;
 
