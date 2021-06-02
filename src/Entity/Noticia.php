@@ -10,6 +10,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Noticia
 {
+    const REGISTRO_OK = 'El socio se ha registrado correctamente';
+
+    public function __construct(){
+    }
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
