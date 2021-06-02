@@ -24,8 +24,6 @@ class SocioType extends AbstractType
             ->add('direccion')
             ->add('num_socio')
             ->add('fecha_alta', DateType::class)
-            //->add('roles')
-            ->add('password', PasswordType::class)
             ->add('Registrar', SubmitType::class)
         ;
     }
