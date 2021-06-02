@@ -75,6 +75,11 @@ class Socio implements UserInterface
      */
     private $password;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Noticia", mappedBy="socio")
+     */
+    private $noticia;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -230,6 +235,22 @@ class Socio implements UserInterface
         $this->fecha_alta = $fecha_alta;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNoticia()
+    {
+        return $this->noticia;
+    }
+
+    /**
+     * @param mixed $noticia
+     */
+    public function setNoticia($noticia): void
+    {
+        $this->noticia = $noticia;
     }
 
     /**
