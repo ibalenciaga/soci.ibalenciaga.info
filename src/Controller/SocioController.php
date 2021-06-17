@@ -21,7 +21,7 @@ class SocioController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $socio = $em->getRepository(Socio::class)->findAll();
         return $this->render('socio/index.html.twig', [
-            'socio' => $socio
+            'socios' => $socio
         ]);
     }
 
