@@ -3,13 +3,26 @@ header{    border: 4px solid;}
 /* MENU */
 .menu a img {max-height: 23px;}
 
+/* BOTONES COLORES */
+.rojo{background-color: #E74C3C;color: #000;border-color: #C0392B;}
+.morado{background-color: #9B59B6; color: #000;border-color: #8E44AD;}
+.azul{background-color: #3498DB; color: #000;border-color: #2980B9;}
+.verde{background-color: #27AE60; color: #000;border-color: #16A085;}
+.amarillo{background-color: #F1C40F; color: #000;border-color: #F39C12;}
+.naranja{background-color: #E67E22; color: #000;border-color: #D35400;}
+.gris{background-color: #95A5A6; color: #000;border-color: #7F8C8D;}
 /* MAIN */
 main{padding: 5rem 0;}
 /* FOOTER */
 footer{background-color: #0C6EFD;padding-top: 2rem;padding-bottom: 2rem;    border: 4px solid;}
 footer p{margin: 0rem;}
 
+/* INDEX*/
+.index .btn{width:50%;margin:10px auto;padding: 20px;}
 
+/* NOTICIAS*/
+.noticias .noticia{margin:50px auto;border: 2px solid;}
+.noticias .noticia .btn{margin: 10px auto;}
 /* MEDIA SCREEN*/
 @media only screen and (min-width: 600px) {
     .menu a img {max-height: 100px;}
