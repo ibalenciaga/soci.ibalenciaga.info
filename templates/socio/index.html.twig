@@ -3,7 +3,30 @@
 {% block title %}Socios{% endblock %}
 
 {% block body %}
-<div class="container">
-      {{ dump(socio) }}
+    {{ dump(socios) }}
+<div class="container socios">
+    <h1>socios</h1>
+    <a class="btn btn-primary" href="{{ path('crear_socio') }}">agregar nuevo socio</a>
+    {% for socio in socios %}
+        <div class="row">
+            <div class="noticia col-10">
+                <h2>{{ socio.nombre | e }}</h2>
+                <p>{{ socio.apellido1 | e }}</p>
+                <p>{{ socio.apellido2 | e }}</p>
+                <p>{{ socio.dni | e }}</p>
+                <p>{{ socio.email | e }}</p>
+                <p>{{ socio.direccion | e }}</p>
+                <p>{{ socio.numSocio | e }}</p>
+            </div>
+            <div class="acciones col-2">
+                <div class="row">
+                    <button class="btn btn-primary">eliminar</button>
+                </div>
+                <div class="row">
+                    <a class="btn btn-primary" href="{{ path('modificar_socio', {id:socio.id}) }}">modificar</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
 </div>
 {% endblock %}
