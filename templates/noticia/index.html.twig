@@ -3,7 +3,27 @@
 {% block title %} | Noticias{% endblock %}
 
 {% block body %}
-    <div class="container">
-        {{ dump(noticias) }}
-    </div>
+    {{ dump(noticias) }}
+<div class="container noticias">
+    <h1>noticias</h1>
+    <a class="btn btn-primary" href="{{ path('crear_noticia') }}">agregar nueva noticia</a>
+    {% for noticia in noticias %}
+        <div class="row noticia">
+            <div class="contenido col-10">
+                <h2>{{ noticia.titulo | e }}</h2>
+                <p>{{ noticia.fechaPublicacion | date }}</p>
+                <p>{{ noticia.contenido | e }}</p>
+                <p>{{ noticia.socio.nombre }}</p>
+            </div>
+            <div class="acciones col-2">
+                <div class="row">
+                    <button class="btn btn-primary">eliminar</button>
+                </div>
+                <div class="row">
+                    <a class="btn btn-primary" href="{{ path('modificar_noticia', {id:noticia.id}) }}">modificar</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
 {% endblock %}

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\NoticiaRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -12,8 +13,6 @@ class Noticia
 {
     const REGISTRO_OK = 'El socio se ha registrado correctamente';
 
-    public function __construct(){
-    }
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -37,9 +36,13 @@ class Noticia
     private $fecha_publicacion;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Socio", inversedBy="noticia")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Socio", inversedBy="noticia", fetch="EAGER")
      */
     private $socio;
+
+    public function __construct()
+    {
+    }
 
     public function getId(): ?int
     {
@@ -85,7 +88,7 @@ class Noticia
     /**
      * @return mixed
      */
-    public function getSocio()
+    public function getSocio(): ?Socio
     {
         return $this->socio;
     }
@@ -97,4 +100,6 @@ class Noticia
     {
         $this->socio = $socio;
     }
+
+
 }
