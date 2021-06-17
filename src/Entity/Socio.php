@@ -80,6 +80,11 @@ class Socio implements UserInterface
      */
     private $noticia;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Reserva", mappedBy="socio")
+     */
+    private $reserva;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -220,7 +225,7 @@ class Socio implements UserInterface
     /**
      * Get the value of fecha_alta
      */ 
-    public function getFechaAlta()
+    public function getFechaAlta(): ?\DateTimeInterface
     {
         return $this->fecha_alta;
     }
@@ -230,7 +235,7 @@ class Socio implements UserInterface
      *
      * @return  self
      */ 
-    public function setFechaAlta($fecha_alta)
+    public function setFechaAlta(\DateTimeInterface $fecha_alta)
     {
         $this->fecha_alta = $fecha_alta;
 
@@ -240,7 +245,7 @@ class Socio implements UserInterface
     /**
      * @return mixed
      */
-    public function getNoticia()
+    public function getNoticia(): ?Noticia
     {
         return $this->noticia;
     }
@@ -251,6 +256,22 @@ class Socio implements UserInterface
     public function setNoticia($noticia): void
     {
         $this->noticia = $noticia;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getReserva(): ?Reserva
+    {
+        return $this->reserva;
+    }
+
+    /**
+     * @param mixed $reserva
+     */
+    public function setReserva($reserva): void
+    {
+        $this->reserva = $reserva;
     }
 
     /**
