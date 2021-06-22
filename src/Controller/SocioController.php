@@ -54,7 +54,7 @@ class SocioController extends AbstractController
     /**
      * @Route("/socios/modificar/{id}", name="modificar_socio")
      */
-    public function modificarSocio($id, Request $request): Response
+    public function modificarSocio($id, Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
     {
         $em = $this->getDoctrine()->getManager();
         $socio = $em->getRepository(Socio::class)->find($id);
@@ -62,6 +62,12 @@ class SocioController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $socio->setPassword(
+                $passwordEncoder->encodePassword(
+                    $socio,
+                    $form->get('password')->getData()
+                )
+            );
             $em->flush();
             return $this->redirectToRoute('socio');
         }
