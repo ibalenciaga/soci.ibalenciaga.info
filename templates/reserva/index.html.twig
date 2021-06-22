@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} | Reservas{% endblock %}
+
+{% block body %}
+    {{ dump(reservas) }}
+<div class="container reservas">
+    <h1>reservas</h1>
+    <a class="btn btn-primary" href="{{ path('crear_reserva') }}">agregar nueva reserva</a>
+    {% for reserva in reservas %}
+        <div class="row reserva">
+            <div class="contenido col-10">
+                <h2>socio: {{ reserva.socio.nombre }} {{ reserva.socio.apellido1 }} {{ reserva.socio.apellido2 }}</h2>
+                <p>fecha: {{ reserva.fecha | date('Y-m-d') }}</p>
+                <p>turno: {{ reserva.turno.turno }}</p>
+                <p>mesas: {% for mesa in reserva.mesas %} {{ mesa.mesa.numero}}, {% endfor %}</p>
+                <p>comensales: {{ reserva.comensales }}</p>
+            </div>
+            <div class="acciones col-2">
+                <div class="row">
+                    <a class="btn btn-primary" href="{{ path('eliminar_reserva', {id:reserva.id}) }}">archivar</a>
+                </div>
+                <div class="row">
+                    <a class="btn btn-primary" href="{{ path('modificar_reserva', {id:reserva.id}) }}">modificar</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

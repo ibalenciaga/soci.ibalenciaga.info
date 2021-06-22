@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} | Modificar reserva{% endblock %}
+
+{% block body %}
+    <div class="container">
+
+        <form name="reserva" action="{{ path('modificar_reserva', { 'id' : reserva.id }) }}" method="POST" id="modificarReserva">
+            <div id="reserva">
+                <div>
+                    <label for="reserva_fecha" class="required">Fecha</label>
+                    <input type="text" id="reserva_fecha" name="reserva[fecha]" required="required" class="js-datepicker form-control" value="{{ reserva.fecha | date('Y-m-d') }}">
+                </div>
+                <div>
+                    <label for="reserva_turno_turno" class="required">Turno</label>
+                    <select id="reserva_turno_turno" name="reserva[turno][turno]" class="form-control">
+                        {% for turnoId in turno %}
+                            <option value="{{ turnoId.id }}" {% if turnoId.id == reserva.turno.id %} checked {% endif %}>{{ turnoId.turno }} </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div>
+                    <label for="reserva_comensales" class="required">Comensales</label>
+                    <input type="text" id="reserva_comensales" name="reserva[comensales]" required="required" class="form-control" value="{{ reserva.comensales }}"></div>
+                <div>
+                    <label>Mesas seleccionadas y libres</label>
+                    {% for todasMesas in todas_mesas %}
+                        {% for mesasLibres in mesas_libres %}
+                            {% if todasMesas.id == mesasLibres.id  %}
+                                <input type="checkbox" class="checkbox" id="reservamesa-{{ todasMesas.id }}" name="mesas[]" data-reservaid="{{ todasMesas.id }}" data-nummesa="{{ todasMesas.numero }}" value="{{ todasMesas.id }}">mesa {{ todasMesas.numero }}
+                            {% endif %}
+                        {% endfor %}
+                        {% for reservaMesa in reserva_mesa %}
+                            {% if todasMesas.id == reservaMesa.mesa.id  %}
+                                <input type="checkbox" class="checkbox" id="reservamesa-{{ todasMesas.id }}" name="mesas[]" data-reservaid="{{ todasMesas.id }}" data-nummesa="{{ todasMesas.numero }}" value="{{ todasMesas.id }}" checked>mesa {{ todasMesas.numero }}
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+                    <button type="submit" class="btn btn-primary" name="submit" value="submit" form="modificarReserva">Reservar</button>
+
+            </div>
+        </form>
+
+    </div>
+{% endblock %}
