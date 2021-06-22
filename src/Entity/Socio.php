@@ -14,7 +14,8 @@ class Socio implements UserInterface
     const REGISTRO_OK = 'El socio se ha registrado correctamente';
 
     public function __construct(){
-        $this->roles = ['ROLE_USER'];    
+        $this->roles = ['ROLE_USER'];
+        $this->archivado = 0;
     }
 
     /**
@@ -84,6 +85,11 @@ class Socio implements UserInterface
      * @ORM\OneToMany(targetEntity="App\Entity\Reserva", mappedBy="socio")
      */
     private $reserva;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $archivado;
 
     public function getId(): ?int
     {
@@ -336,6 +342,18 @@ class Socio implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getArchivado(): ?bool
+    {
+        return $this->archivado;
+    }
+
+    public function setArchivado(bool $archivado): self
+    {
+        $this->archivado = $archivado;
+
+        return $this;
     }
 
 

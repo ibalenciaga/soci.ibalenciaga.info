@@ -70,4 +70,30 @@ class SocioController extends AbstractController
             'formulario' => $form->createView()
         ]);
     }
+
+    /**
+     * @Route("/socios/archivar/{id}", name="archivar_socio")
+     */
+    public function archivarSocio($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $socio = $em->getRepository(Socio::class)->find($id);
+        $socio->setArchivado(1);
+        $em->flush();
+
+        return $this->redirectToRoute('socio');
+    }
+
+    /**
+     * @Route("/socios/desarchivar/{id}", name="desarchivar_socio")
+     */
+    public function desarchivarSocio($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $socio = $em->getRepository(Socio::class)->find($id);
+        $socio->setArchivado(0);
+        $em->flush();
+
+        return $this->redirectToRoute('socio');
+    }
 }
