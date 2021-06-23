@@ -4,6 +4,33 @@
 
 {% block body %}
     <div class="container">
-        {{ form(formulario) }}
+        <form name="reserva" action="{{ path('crear_reserva') }}" method="POST" id="crearReserva" autocomplete="off">
+            <div id="reserva">
+                <div>
+                    <label for="reserva_fecha" class="required">Fecha</label>
+                    <input type="date" id="reserva_fecha" name="reserva[fecha]" required="required" class="js-datepicker form-control" value="{{ "now" | date('Y-m-d') }}">
+                </div>
+                <div>
+                    <label for="reserva_turno_turno" class="required">Turno</label>
+                    <select id="reserva_turno_turno" name="reserva[turno][turno]" class="form-control">
+                        {% for turno in turnos %}
+                            <option value="{{ turno.id }}">{{ turno.turno }} </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div>
+                    <button type="button" id="reserva_buscar-mesa" name="reserva[buscar-mesa]" class="btn btn-primary">Buscar-mesa</button>
+                </div>
+                <div id="mesas-libres">
+
+                </div>
+                <div>
+                    <label for="reserva_comensales" class="required">Comensales</label>
+                    <input type="text" id="reserva_comensales" name="reserva[comensales]" required="required" class="form-control"></div>
+
+                <button type="submit" class="btn btn-primary" name="submit" value="submit" form="crearReserva">reservar</button>
+
+            </div>
+        </form>
     </div>
 {% endblock %}

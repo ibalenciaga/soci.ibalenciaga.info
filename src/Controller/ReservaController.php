@@ -48,20 +48,26 @@ class ReservaController extends AbstractController
 
             $form = $this->createForm(ReservaType::class, $reserva);
             $form->handleRequest(($request));
-            if($form->isSubmitted() && $form->isValid()){
+            if (isset($_POST['submit'])){
                 $socio = $this->getUser();
                 $reserva->setSocio($socio);
                 $turno_form = $form->get('turno')->getData();
                 $turno = $em->getRepository(Turno::class)->find($turno_form->getTurno());
                 $reserva->setTurno($turno);
                 $reserva_existente = $em->getRepository(Reserva::class)->findReservaExistente($socio, $form->get('fecha')->getData()->format('Y-m-d'), $turno->getId());
-                //guardamos la reserva si no existe una reserva de ese socio en ese mismo dia y turno
-                if($reserva_existente != null){
-                    if($reserva_existente->getFecha()->format('Y-m-d') != $form->get('fecha')->getData()->format('Y-m-d') || $reserva_existente->getTurno()->getId() != $turno->getId()){
+                //guardamos la reserva si no existe
+                if($reserva_existente == null){
                         $em->persist($reserva);
                         $em->flush();
-                    }
+
+                }else{
+                    $comensales_nuevos = $form->get('comensales')->getData();
+                    $comensales_existentes = $reserva_existente->getComensales();
                     $reserva = $reserva_existente;
+                    $reserva->setComensales($comensales_nuevos + $comensales_existentes);
+
+                    $em->flush();
+
                 }
                 $em->persist($reserva);
                 //guardamos tambien la reserva en la tabla reserva_mesa
@@ -102,14 +108,7 @@ class ReservaController extends AbstractController
         $todas_mesas = $em->getRepository(Mesa::class)->findAll();
 
         if (isset($_POST['submit'])){
-            $socio = $this->getUser();
-            $reserva->setSocio($socio);
-            $fecha = new \DateTime($_POST['reserva']['fecha']);
-            $reserva->setFecha($fecha);
             $reserva->setComensales($_POST['reserva']['comensales']);
-
-            $turno = $em->getRepository(Turno::class)->find($_POST['reserva']['turno']['turno']);
-            $reserva->setTurno($turno);
             $em->flush();
             //eliminamos la reserva antigua
             foreach ($reservaMesa as $reserva_mesa){

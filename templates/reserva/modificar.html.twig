@@ -9,15 +9,11 @@
             <div id="reserva">
                 <div>
                     <label for="reserva_fecha" class="required">Fecha</label>
-                    <input type="text" id="reserva_fecha" name="reserva[fecha]" required="required" class="js-datepicker form-control" value="{{ reserva.fecha | date('Y-m-d') }}">
+                    <input type="date" id="reserva_fecha" name="reserva[fecha]" required="required" class="js-datepicker form-control" value="{{ reserva.fecha | date('Y-m-d') }}" disabled>
                 </div>
                 <div>
                     <label for="reserva_turno_turno" class="required">Turno</label>
-                    <select id="reserva_turno_turno" name="reserva[turno][turno]" class="form-control">
-                        {% for turnoId in turno %}
-                            <option value="{{ turnoId.id }}" {% if turnoId.id == reserva.turno.id %} checked {% endif %}>{{ turnoId.turno }} </option>
-                        {% endfor %}
-                    </select>
+                    <input type="text" class="form-control" name="reserva[turno][turno]" value="{{ reserva.turno.turno }}" disabled>
                 </div>
                 <div>
                     <label for="reserva_comensales" class="required">Comensales</label>
@@ -37,7 +33,7 @@
                         {% endfor %}
                     {% endfor %}
                 </div>
-                    <button type="submit" class="btn btn-primary" name="submit" value="submit" form="modificarReserva">Reservar</button>
+                    <button type="submit" class="btn btn-primary" name="submit" value="submit" form="modificarReserva">modificar</button>
 
             </div>
         </form>
