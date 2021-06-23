@@ -1,14 +1,13 @@
 $(document).ready(function(){
+    //inicializar las opciones del datepicker
     $('.js-datepicker').datepicker({
         format: 'yyyy-mm-dd',
         showOn: 'button',
         buttonImageOnly: true,
     });
+
     //desabilitar el boton de reservar
     $("#reserva_reservar").prop("disabled",true);
-
-    //crear el div de las mesas dinamicamente
-    $("#reserva_buscar-mesa").after('<div id="mesas-libres"></div>')
 
     //mostrar las mesas al pulsar el boton de buscar mesa
     $("#reserva_buscar-mesa").click(function(){
