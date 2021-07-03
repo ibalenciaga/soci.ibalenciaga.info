@@ -16,7 +16,9 @@ class ProductoType extends AbstractType
             ->add('nombre')
             ->add('stock')
             ->add('precio')
-            ->add('Agregar', SubmitType::class)
+            ->add('agregar', SubmitType::class, [
+                'attr' => ['class' => 'btn btn-primary']
+            ])
         ;
     }
 
