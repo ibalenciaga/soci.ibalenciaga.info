@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} | Cuentas{% endblock %}
+
+{% block body %}
+    {{ dump(reserva) }}
+    {{ dump(productos) }}
+    <div class="container cuentas">
+        <h1>hacer cuenta</h1>
+        <form name="crear_factura_reserva" action="{{ path('crear_factura_reserva', { 'id' : reserva.id }) }}" method="POST" id="crearFacturaReserva" autocomplete="off">
+            <div class="row cabeceras">
+                <div class="cabecera col-8">
+                    <p>producto</p>
+                </div>
+                <div class="cabecera col-2">
+                    <p>cantidad</p>
+                </div>
+                <div class="cabecera col-2">
+                    <p>precio</p>
+                </div>
+            </div>
+            {% for i, producto in productos %}
+                <div class="row producto">
+                    <div class="nombre col-8">
+                        <input type="text" class="form-control nombre" name="producto[{{ producto.id }}][id]" value="{{ producto.id }}">
+
+                    </div>
+                    <div class=" col-2">
+                        <input type="text" class="form-control cantidad" name="producto[{{ producto.id }}][cantidad]" data-precio="{{ producto.precio }}">
+                    </div>
+                    <div class="precio col-2">
+                        <input type="text" class="form-control precio" name="producto[{{ producto.id }}][precio]" value="{{ producto.precio | number_format(2) }}">
+                    </div>
+                </div>
+            {% endfor %}
+            <hr>
+            <div class="row total-pago">
+                <div class="col-8">
+
+                </div>
+                <div class="col-2">
+                    <p>total: </p>
+                </div>
+                <div class="col-2">
+                    <p id="total"></p>
+                </div>
+            </div>
+           <div>
+                <input type="text" id="reserva_id" class="form-control" name="reserva_id" value="{{ reserva.id }}">
+                <input type="text" id="reserva_precio" class="form-control" name="reserva_precio">
+           </div>
+            <div>
+               <button type="submit" class="btn btn-primary" name="submit" value="submit" form="crearFacturaReserva">pagar</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

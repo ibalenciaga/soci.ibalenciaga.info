@@ -2,7 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\ConsumicionReserva;
+use App\Entity\FacturaReserva;
 use App\Entity\Mesa;
+use App\Entity\Producto;
 use App\Entity\Reserva;
 use App\Entity\ReservaMesa;
 use App\Entity\Turno;
@@ -26,11 +29,11 @@ class ReservaController extends AbstractController
             $reservaMesa= $em->getRepository(ReservaMesa::class)->findByReservaId($reserva);
             foreach ($reservaMesa as $reserva_mesa){
                 array_push($reserva->mesas, $reserva_mesa);
-
             }
-
-
-
+            $factura_reserva = $em->getRepository(FacturaReserva::class)->findByReservaId($reserva);
+            if(isset($factura_reserva) && $factura_reserva != null){
+                $reserva->factura = $factura_reserva;
+            }
         }
         return $this->render('reserva/index.html.twig', [
             'reservas' => $reservas
@@ -165,8 +168,82 @@ class ReservaController extends AbstractController
         $em->remove($reserva);
         $em->flush();
 
-
         return $this->redirectToRoute('reserva');
+    }
+
+    /**
+     * @Route("/reservas/{id}/pagar", name="pagar_reserva")
+     */
+    public function pagarReserva($id, Request $request): Response
+    {
+        $em = $this->getDoctrine()->getManager();
+        $reserva = $em->getRepository(Reserva::class)->find($id);
+        $productos = $em->getRepository(Producto::class)->findAll();
+
+
+        return $this->render('reserva/cuenta.html.twig', [
+            'reserva' => $reserva,
+            'productos' => $productos
+        ]);
+    }
+
+    /**
+     * @Route("/reservas/{id}/crear/factura", name="crear_factura_reserva")
+     */
+    public function crearFacturaReserva($id, Request $request): Response
+    {
+        $em = $this->getDoctrine()->getManager();
+        $reserva = $em->getRepository(Reserva::class)->find($id);
+        $productos = $em->getRepository(Producto::class)->findAll();
+
+        if (isset($_POST['submit'])){
+
+            $factura_reserva = new FacturaReserva();
+            $factura_reserva->setReserva($reserva);
+            $precio = $_POST['reserva_precio'];
+            $factura_reserva->setPrecio((float)$precio);
+            $em->persist($factura_reserva);
+            $em->flush();
+
+            foreach ($_POST['producto'] as $i => $producto){
+                if($producto['cantidad'] != null){
+                    $consumicion_reserva = new ConsumicionReserva();
+                    $consumicion_reserva->setReserva($reserva);
+                    $producto_id = $em->getRepository(Producto::class)->find($producto['id']);
+                    $consumicion_reserva->setProducto($producto_id);
+                    $consumicion_reserva->setCantidad($producto['cantidad']);
+                    $em->persist($consumicion_reserva);
+                    $em->flush();
+                }
+            }
+
+            return $this->redirectToRoute('ver_factura_reserva');
+        }
+        return $this->render('reserva/cuenta.html.twig', [
+            'reserva' => $reserva,
+            'productos' => $productos
+        ]);
+    }
+
+    /**
+     * @Route("/reservas/{id}/ver/factura", name="ver_factura_reserva")
+     */
+    public function verFacturaReserva($id, Request $request): Response
+    {
+        $factura_reserva = Array();
+        $em = $this->getDoctrine()->getManager();
+        $reserva = $em->getRepository(Reserva::class)->find($id);
+        $factura_reserva = $em->getRepository(FacturaReserva::class)->findByReservaId($id);
+
+        $consumicion_reserva = $em->getRepository(ConsumicionReserva::class)->findByReservaId($id);
+
+
+
+        return $this->render('reserva/verFactura.html.twig', [
+            'reserva' => $reserva,
+            'factura_reserva' => $factura_reserva,
+            'consumicion_reserva' => $consumicion_reserva
+        ]);
     }
 
     /**

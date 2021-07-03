@@ -18,10 +18,18 @@
             </div>
             <div class="acciones col-2">
                 <div class="row">
-                    <a class="btn btn-primary" href="{{ path('eliminar_reserva', {id:reserva.id}) }}">eliminar</a>
+                    <a class="btn btn-primary" href="{{ path('modificar_reserva', {id:reserva.id}) }}">modificar</a>
                 </div>
                 <div class="row">
-                    <a class="btn btn-primary" href="{{ path('modificar_reserva', {id:reserva.id}) }}">modificar</a>
+                    <a class="btn btn-primary" href="{{ path('pagar_reserva', {id:reserva.id}) }}">hacer cuentas</a>
+                </div>
+                {% if reserva.factura is not null %}
+                    <div class="row">
+                        <a class="btn btn-primary" href="{{ path('ver_factura_reserva', {id:reserva.id}) }}">ver factura</a>
+                    </div>
+                {% endif %}
+                <div class="row">
+                    <a class="btn btn-primary" href="{{ path('eliminar_reserva', {id:reserva.id}) }}">eliminar</a>
                 </div>
             </div>
         </div>
