@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use src\Controller\IndexController;
 use App\Entity\Socio;
 use App\Form\SocioType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
