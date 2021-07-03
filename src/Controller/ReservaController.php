@@ -217,7 +217,7 @@ class ReservaController extends AbstractController
                 }
             }
 
-            return $this->redirectToRoute('ver_factura_reserva');
+            return $this->redirectToRoute('ver_factura_reserva', array('id' => $reserva->getId()));
         }
         return $this->render('reserva/cuenta.html.twig', [
             'reserva' => $reserva,

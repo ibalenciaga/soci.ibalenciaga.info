@@ -10,7 +10,8 @@
     {% for reserva in reservas %}
         <div class="row reserva">
             <div class="contenido col-10">
-                <h2>socio: {{ reserva.socio.nombre }} {{ reserva.socio.apellido1 }} {{ reserva.socio.apellido2 }}</h2>
+                <h5>reserva: {{ reserva.id }}</h5>
+                <p>socio: {{ reserva.socio.nombre }} {{ reserva.socio.apellido1 }} {{ reserva.socio.apellido2 }}</p>
                 <p>fecha: {{ reserva.fecha | date('Y-m-d') }}</p>
                 <p>turno: {{ reserva.turno.turno }}</p>
                 <p>mesas: {% for mesa in reserva.mesas %} {{ mesa.mesa.numero}}, {% endfor %}</p>
@@ -23,7 +24,7 @@
                 <div class="row">
                     <a class="btn btn-primary" href="{{ path('pagar_reserva', {id:reserva.id}) }}">hacer cuentas</a>
                 </div>
-                {% if reserva.factura is not null %}
+                {% if reserva.factura is defined and reserva.factura != null %}
                     <div class="row">
                         <a class="btn btn-primary" href="{{ path('ver_factura_reserva', {id:reserva.id}) }}">ver factura</a>
                     </div>
