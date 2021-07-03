@@ -1,34 +1,34 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Socios{% endblock %}
+{% block title %} | Socios{% endblock %}
 
 {% block body %}
     {{ dump(socios) }}
-<div class="container socios">
-    <h1>socios</h1>
-    <a class="btn btn-primary" href="{{ path('crear_socio') }}">agregar nuevo socio</a>
-    {% for socio in socios %}
-        {% if socio.archivado == 0 %}
-        <div class="row socio">
-            <div class="contenido col-10">
-                <h2>{{ socio.nombre | e }}</h2>
-                <p>{{ socio.apellido1 | e }}</p>
-                <p>{{ socio.apellido2 | e }}</p>
-                <p>{{ socio.dni | e }}</p>
-                <p>{{ socio.email | e }}</p>
-                <p>{{ socio.direccion | e }}</p>
-                <p>{{ socio.numSocio | e }}</p>
-            </div>
-            <div class="acciones col-2">
-                <div class="row">
-                    <a class="btn btn-primary" href="{{ path('archivar_socio', {id:socio.id}) }}">archivar</a>
+    <div class="container socios">
+        <h1>socios</h1>
+        <a class="btn btn-primary" href="{{ path('crear_socio') }}">agregar nuevo socio</a>
+        {% for socio in socios %}
+            {% if socio.archivado == 0 %}
+            <div class="row socio">
+                <div class="contenido col-10">
+                    <h2>{{ socio.nombre | e }}</h2>
+                    <p>{{ socio.apellido1 | e }}</p>
+                    <p>{{ socio.apellido2 | e }}</p>
+                    <p>{{ socio.dni | e }}</p>
+                    <p>{{ socio.email | e }}</p>
+                    <p>{{ socio.direccion | e }}</p>
+                    <p>{{ socio.numSocio | e }}</p>
                 </div>
-                <div class="row">
-                    <a class="btn btn-primary" href="{{ path('modificar_socio', {id:socio.id}) }}">modificar</a>
+                <div class="acciones col-2">
+                    <div class="row">
+                        <a class="btn btn-primary" href="{{ path('archivar_socio', {id:socio.id}) }}">archivar</a>
+                    </div>
+                    <div class="row">
+                        <a class="btn btn-primary" href="{{ path('modificar_socio', {id:socio.id}) }}">modificar</a>
+                    </div>
                 </div>
             </div>
-        </div>
-        {% endif %}
-    {% endfor %}
-</div>
+            {% endif %}
+        {% endfor %}
+    </div>
 {% endblock %}
