@@ -59,4 +59,18 @@ class ProductoController extends AbstractController
             'formulario' => $form->createView()
         ]);
     }
+
+    /**
+     * @Route("/productos/eliminar/{id}", name="eliminar_producto")
+     */
+    public function eliminarProducto($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $producto = $em->getRepository(Producto::class)->find($id);
+        $em->remove($producto);
+        $em->flush();
+
+
+        return $this->redirectToRoute('producto');
+    }
 }
