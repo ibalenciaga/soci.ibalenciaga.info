@@ -39,11 +39,17 @@ class Reserva
     private $turno;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\FacturaReserva", mappedBy="reserva")
+     */
+    private $facturaReserva;
+
+    /**
      * @ORM\Column(type="boolean")
      */
     private $archivado;
 
     public $mesas = Array();
+    public $factura = Array();
 
     public function __construct()
     {
@@ -124,4 +130,23 @@ class Reserva
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getFacturaReserva()
+    {
+        return $this->facturaReserva;
+    }
+
+    /**
+     * @param mixed $facturaReserva
+     */
+    public function setFacturaReserva($facturaReserva): void
+    {
+        $this->facturaReserva = $facturaReserva;
+    }
+
+
+
 }
