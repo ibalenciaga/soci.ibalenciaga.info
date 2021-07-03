@@ -1,9 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} | Noticias{% endblock %}
+{% block title %} | Productos{% endblock %}
 
 {% block body %}
-    <div class="container">
-        {{ dump(productos) }}
+    {{ dump(productos) }}
+    <div class="container productos">
+        <h1>productos</h1>
+        <a class="btn btn-primary" href="{{ path('crear_producto') }}">agregar nuevo producto</a>
+        {% for producto in productos %}
+            <div class="row producto">
+                <div class="contenido col-10">
+                    <h2>producto: {{ producto.nombre | e }}</h2>
+                    <p>precio: {{ producto.precio | number_format(2, '.', ',') }}€</p>
+                    <p>stock: {{ producto.stock | e }} unidades</p>
+                </div>
+                <div class="acciones col-2">
+                    <div class="row">
+                        <a class="btn btn-primary" href="{{ path('eliminar_producto', {id:producto.id}) }}">eliminar</a>
+                    </div>
+                    <div class="row">
+                        <a class="btn btn-primary" href="{{ path('modificar_producto', {id:producto.id}) }}">modificar</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
     </div>
 {% endblock %}
