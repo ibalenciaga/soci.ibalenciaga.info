@@ -30,7 +30,7 @@ class ReservaController extends AbstractController
             foreach ($reservaMesa as $reserva_mesa){
                 array_push($reserva->mesas, $reserva_mesa);
             }
-            $factura_reserva = $em->getRepository(FacturaReserva::class)->findByReservaId($reserva);
+            $factura_reserva = $em->getRepository(FacturaReserva::class)->findBy(array('reserva' => $reserva));
             if(isset($factura_reserva) && $factura_reserva != null){
                 $reserva->factura = $factura_reserva;
             }
