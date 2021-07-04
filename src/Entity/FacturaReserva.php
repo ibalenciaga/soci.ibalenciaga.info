@@ -23,7 +23,7 @@ class FacturaReserva
     private $precio;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Reserva", inversedBy="reserva", fetch="EAGER")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Reserva", inversedBy="facturaReserva", fetch="EAGER")
      */
     private $reserva;
 

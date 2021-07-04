@@ -19,20 +19,6 @@ class FacturaReservaRepository extends ServiceEntityRepository
         parent::__construct($registry, FacturaReserva::class);
     }
 
-    //
-    //  @return FacturaReserva[] Returns an array of FacturaReserva objects
-    //
-    public function findByReservaId($value)
-    {
-        return $this->createQueryBuilder('f')
-            ->andWhere('f.reserva = :val')
-            ->setParameter('val', $value)
-            ->orderBy('f.reserva', 'ASC')
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-
     // /**
     //  * @return FacturaReserva[] Returns an array of FacturaReserva objects
     //  */
