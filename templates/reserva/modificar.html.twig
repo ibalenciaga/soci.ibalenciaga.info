@@ -33,8 +33,24 @@
                         {% endfor %}
                     {% endfor %}
                 </div>
-                    <button type="submit" class="btn btn-primary" name="submit" value="submit" form="modificarReserva">modificar</button>
+                <div class="acciones col-2">
+                    <div class="row">
+                        <button type="submit" class="btn btn-primary" name="submit" value="submit" form="modificarReserva">modificar</button>
+                    </div>
+                    {% if reserva.factura is defined and reserva.factura != null %}
+                        <div class="row">
+                            <a class="btn btn-primary" href="{{ path('ver_factura_reserva', {id:reserva.id}) }}">ver factura</a>
+                        </div>
+                    {% else %}
+                        <div class="row">
+                            <a class="btn btn-primary" href="{{ path('pagar_reserva', {id:reserva.id}) }}">hacer cuentas</a>
 
+                        </div>
+                    {% endif %}
+                    <div class="row">
+                        <a class="btn btn-primary" href="{{ path('eliminar_reserva', {id:reserva.id}) }}">eliminar</a>
+                    </div>
+                </div>
             </div>
         </form>
 

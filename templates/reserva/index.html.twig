@@ -4,36 +4,26 @@
 
 {% block body %}
     {{ dump(reservas) }}
-<div class="container reservas">
+<div class="container">
     <h1>reservas</h1>
-    <a class="btn btn-primary" href="{{ path('crear_reserva') }}">agregar nueva reserva</a>
-    {% for reserva in reservas %}
-        <div class="row reserva">
-            <div class="contenido col-10">
+    <div class="reservas cabecera">
+            <a class="btn btn-primary" href="{{ path('crear_reserva') }}">agregar nueva reserva</a>
+    </div>
+    <div class="reservas contenido">
+        {% for reserva in reservas %}
+        <div class="postit {% if reserva.turno.turno == "comida"  %}comida{% else %}cena{% endif %}" onclick="location.href='{{ path('modificar_reserva', {id:reserva.id}) }}';">
+            <div class="reserva">
                 <h5>reserva: {{ reserva.id }}</h5>
                 <p>socio: {{ reserva.socio.nombre }} {{ reserva.socio.apellido1 }} {{ reserva.socio.apellido2 }}</p>
-                <p>fecha: {{ reserva.fecha | date('Y-m-d') }}</p>
+                <p>fecha: {{ reserva.fecha | date('d-m-Y') }}</p>
                 <p>turno: {{ reserva.turno.turno }}</p>
                 <p>mesas: {% for mesa in reserva.mesas %} {{ mesa.mesa.numero}}, {% endfor %}</p>
                 <p>comensales: {{ reserva.comensales }}</p>
             </div>
-            <div class="acciones col-2">
-                <div class="row">
-                    <a class="btn btn-primary" href="{{ path('modificar_reserva', {id:reserva.id}) }}">modificar</a>
-                </div>
-                <div class="row">
-                    <a class="btn btn-primary" href="{{ path('pagar_reserva', {id:reserva.id}) }}">hacer cuentas</a>
-                </div>
-                {% if reserva.factura is defined and reserva.factura != null %}
-                    <div class="row">
-                        <a class="btn btn-primary" href="{{ path('ver_factura_reserva', {id:reserva.id}) }}">ver factura</a>
-                    </div>
-                {% endif %}
-                <div class="row">
-                    <a class="btn btn-primary" href="{{ path('eliminar_reserva', {id:reserva.id}) }}">eliminar</a>
-                </div>
-            </div>
         </div>
-    {% endfor %}
+        {% endfor %}
+    </div>
+    <div class="reservas footer">
+    </div>
 </div>
 {% endblock %}
