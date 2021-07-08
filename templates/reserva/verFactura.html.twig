@@ -1,7 +1,7 @@
 {% block body %}
     {{ dump(reserva) }}
-    {{ dump(factura_reserva) }}
-    {{ dump(consumicion_reserva) }}
+    {{ dump(facturaReserva) }}
+    {{ dump(consumicionReserva) }}
     <div class="container factura">
         <h1>Factura</h1>
         <div class="row col-12 reserva">
@@ -24,6 +24,13 @@
                     <p>comensales: {{ reserva.comensales }}</p>
                 </div>
             </div>
+            <div class="contenido">
+                <div class="col-4 fecha">
+                    {% for mesas in reserva.mesas %}
+                    <p>mesas: {{ mesas.mesa.numero }}</p>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
         <div class="row col-12 consumiciones">
             <div class="contenido">
@@ -40,28 +47,28 @@
                     <p>total</p>
                 </div>
             </div>
-            {% for consumicionReserva in consumicion_reserva %}
+            {% for consumicion_reserva in consumicionReserva %}
             <div class="contenido">
                 <div class="col-6 producto">
-                    <p>producto: {{ consumicionReserva.producto.nombre }}</p>
+                    <p>producto: {{ consumicion_reserva.producto.nombre }}</p>
                 </div>
                 <div class="col-3 cantidad">
-                    <p>cantidad: {{ consumicionReserva.cantidad }}</p>
+                    <p>cantidad: {{ consumicion_reserva.cantidad }}</p>
                 </div>
                 <div class="col-3 precio">
-                    <p>precio: {{ consumicionReserva.producto.precio }}€</p>
+                    <p>precio: {{ consumicion_reserva.producto.precio }}€</p>
                 </div>
                 <div class="col-3 total">
-                    {% set total = consumicionReserva.producto.precio * consumicionReserva.cantidad %}
+                    {% set total = consumicion_reserva.producto.precio * consumicion_reserva.cantidad %}
                     <p>total =  {{ total }}€</p>
                 </div>
             </div>
             {% endfor %}
         </div>
         <div class="row col-12 factura">
-            {% for facturaReserva in factura_reserva %}
+            {% for factura_reserva in facturaReserva %}
             <div class="contenido">
-                <p>total= {{ facturaReserva.precio }}€</p>
+                <p>total= {{ factura_reserva.precio }}€</p>
             <div class="col-6 producto">
             {% endfor %}
         </div>

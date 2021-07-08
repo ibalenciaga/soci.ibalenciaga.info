@@ -26,7 +26,8 @@ class ReservaController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $reservas = $em->getRepository(Reserva::class)->findAll();
         foreach ($reservas as $reserva){
-            $reservaMesa= $em->getRepository(ReservaMesa::class)->findByReservaId($reserva);
+            //$reservaMesa= $em->getRepository(ReservaMesa::class)->findByReservaId($reserva);
+            $reservaMesa= $em->getRepository(ReservaMesa::class)->findBy(array('reserva' => $reserva->getId()));
             foreach ($reservaMesa as $reserva_mesa){
                 array_push($reserva->mesas, $reserva_mesa);
             }
@@ -105,7 +106,7 @@ class ReservaController extends AbstractController
         $turno = $em->getRepository(Turno::class)->findAll();
         $reserva = $em->getRepository(Reserva::class)->find($id);
 
-        $reservaMesa= $em->getRepository(ReservaMesa::class)->findByReservaId($reserva);
+        $reservaMesa= $em->getRepository(ReservaMesa::class)->findBy(array('reserva' => $reserva));
 
         $mesas_libres = $em->getRepository(Mesa::class)->findMesasLibres($reserva->getFecha()->format('Y-m-d'),$reserva->getTurno()->getId());
         $todas_mesas = $em->getRepository(Mesa::class)->findAll();
@@ -159,7 +160,7 @@ class ReservaController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
         $reserva = $em->getRepository(Reserva::class)->find($id);
-        $reservaMesa= $em->getRepository(ReservaMesa::class)->findByReservaId($reserva);
+        $reservaMesa= $em->getRepository(ReservaMesa::class)->findBy(array('reserva' => $reserva));
 
         foreach ($reservaMesa as $reserva_mesa){
             $em->remove($reserva_mesa);
@@ -205,19 +206,19 @@ class ReservaController extends AbstractController
             $em->persist($factura_reserva);
             $em->flush();
 
-            foreach ($_POST['producto'] as $i => $producto){
+            foreach ($_POST['producto'] as $producto){
                 if($producto['cantidad'] != null){
-                    $consumicion_reserva = new ConsumicionReserva();
-                    $consumicion_reserva->setReserva($reserva);
+                    $consumicionReserva = new ConsumicionReserva();
+                    $consumicionReserva->setReserva($reserva);
                     $producto_id = $em->getRepository(Producto::class)->find($producto['id']);
-                    $consumicion_reserva->setProducto($producto_id);
-                    $consumicion_reserva->setCantidad($producto['cantidad']);
-                    $em->persist($consumicion_reserva);
+                    $consumicionReserva->setProducto($producto_id);
+                    $consumicionReserva->setCantidad($producto['cantidad']);
+                    $em->persist($consumicionReserva);
                     $em->flush();
                 }
             }
 
-            return $this->redirectToRoute('ver_factura_reserva');
+            return $this->redirectToRoute('ver_factura_reserva', array('id' => $reserva->getId(),));
         }
         return $this->render('reserva/cuenta.html.twig', [
             'reserva' => $reserva,
@@ -230,19 +231,19 @@ class ReservaController extends AbstractController
      */
     public function verFacturaReserva($id, Request $request): Response
     {
-        $factura_reserva = Array();
         $em = $this->getDoctrine()->getManager();
         $reserva = $em->getRepository(Reserva::class)->find($id);
-        $factura_reserva = $em->getRepository(FacturaReserva::class)->findByReservaId($id);
-
-        $consumicion_reserva = $em->getRepository(ConsumicionReserva::class)->findByReservaId($id);
-
-
+        $reservaMesa= $em->getRepository(ReservaMesa::class)->findBy(Array('reserva' =>$reserva));
+        foreach ($reservaMesa as $reserva_mesa){
+            array_push($reserva->mesas, $reserva_mesa);
+        }
+        $facturaReserva = $em->getRepository(FacturaReserva::class)->findBy(array('reserva' => $reserva));
+        $consumicion_reserva = $em->getRepository(ConsumicionReserva::class)->findBy(array('reserva' => $reserva));
 
         return $this->render('reserva/verFactura.html.twig', [
             'reserva' => $reserva,
-            'factura_reserva' => $factura_reserva,
-            'consumicion_reserva' => $consumicion_reserva
+            'facturaReserva' => $facturaReserva,
+            'consumicionReserva' => $consumicion_reserva
         ]);
     }
 
