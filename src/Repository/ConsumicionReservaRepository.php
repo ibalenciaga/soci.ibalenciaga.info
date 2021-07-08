@@ -19,20 +19,6 @@ class ConsumicionReservaRepository extends ServiceEntityRepository
         parent::__construct($registry, ConsumicionReserva::class);
     }
 
-    //
-    //  * @return ConsumicionReserva[] Returns an array of ConsumicionReserva objects
-    //
-    public function findByReservaId($value)
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.reserva = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.reserva', 'ASC')
-            ->getQuery()
-            ->getResult()
-            ;
-    }
-
     // /**
     //  * @return ConsumicionReserva[] Returns an array of ConsumicionReserva objects
     //  */

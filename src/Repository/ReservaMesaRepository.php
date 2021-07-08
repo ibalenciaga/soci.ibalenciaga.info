@@ -19,22 +19,6 @@ class ReservaMesaRepository extends ServiceEntityRepository
         parent::__construct($registry, ReservaMesa::class);
     }
 
-    //
-    // @return ReservaMesa[] Returns an array of ReservaMesa objects
-    //
-
-    public function findByReservaId($value)
-    {
-        return $this->createQueryBuilder('r')
-            ->andWhere('r.reserva = :val')
-            ->setParameter('val', $value)
-            ->orderBy('r.mesa', 'ASC')
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-
-
     /*
     public function findOneBySomeField($value): ?ReservaMesa
     {
