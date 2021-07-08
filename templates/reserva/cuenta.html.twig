@@ -22,8 +22,8 @@
             {% for i, producto in productos %}
                 <div class="row producto">
                     <div class="nombre col-8">
-                        <input type="text" class="form-control nombre" name="producto[{{ producto.id }}][id]" value="{{ producto.id }}">
-
+                        <input type="text" class="form-control id" name="producto[{{ producto.id }}][id]" value="{{ producto.id }}">
+                        <input type="text" class="form-control nombre" name="producto[{{ producto.id }}][nombre]" value="{{ producto.nombre }}">
                     </div>
                     <div class=" col-2">
                         <input type="text" class="form-control cantidad" name="producto[{{ producto.id }}][cantidad]" data-precio="{{ producto.precio }}">
