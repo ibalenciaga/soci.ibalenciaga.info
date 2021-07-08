@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} | Ingresos{% endblock %}
+
+{% block body %}
+    {{ dump(facturaReserva) }}
+    <div class="container ingresos">
+        <h1>ingresos</h1>
+        <h2>reservas</h2>
+        <div class="row ingreso reserva">
+            <div class="contenido col-10">
+                <p>fecha</p>
+                <p>socio</p>
+                <p>ingreso</p>
+            </div>
+        </div>
+        {% set total = 0 %}
+        {% for factura in facturaReserva %}
+            {% set total = total + factura.precio %}
+            <div class="row ingreso reserva">
+                <div class="contenido col-10">
+                    <p>{{ factura.reserva.fecha | date('Y-m-d') }}</p>
+                    <p>{{ factura.reserva.socio.apellido1 | e }} {{ factura.reserva.socio.apellido2 | e }} {{ factura.reserva.socio.nombre | e }}</p>
+                    <p>{{ factura.precio }}€</p>
+                </div>
+            </div>
+        {% endfor %}
+        <div class="row ingreso reserva">
+            <div class="contenido col-10">
+                <p></p>
+                <p></p>
+                <p>total = {{ total }}€</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
