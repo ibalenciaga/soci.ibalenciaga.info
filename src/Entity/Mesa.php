@@ -22,7 +22,10 @@ class Mesa
      */
     private $numero;
 
-
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ReservaMesa", mappedBy="mesa")
+     */
+    private $reservaMesa;
 
     public function getId(): ?int
     {
@@ -40,4 +43,22 @@ class Mesa
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getReservaMesa(): ?ReservaMesa
+    {
+        return $this->reservaMesa;
+    }
+
+    /**
+     * @param mixed $reservaMesa
+     */
+    public function setReservaMesa($reservaMesa): void
+    {
+        $this->reservaMesa = $reservaMesa;
+    }
+
+
 }
