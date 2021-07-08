@@ -32,6 +32,11 @@ class Producto
      */
     private $precio;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ConsumicionReserva", mappedBy="producto")
+     */
+    private $consumicionReserva;
+
     public function getId(): ?int
     {
         return $this->id;

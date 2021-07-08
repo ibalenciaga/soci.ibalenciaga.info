@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\ReservaRepository;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -39,9 +38,19 @@ class Reserva
     private $turno;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ReservaMesa", mappedBy="reserva")
+     */
+    private $reservaMesa;
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\FacturaReserva", mappedBy="reserva")
      */
     private $facturaReserva;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ConsumicionReserva", mappedBy="reserva")
+     */
+    private $consumicionReserva;
 
     /**
      * @ORM\Column(type="boolean")
@@ -134,7 +143,23 @@ class Reserva
     /**
      * @return mixed
      */
-    public function getFacturaReserva()
+    public function getReservaMesa(): ?ReservaMesa
+    {
+        return $this->reservaMesa;
+    }
+
+    /**
+     * @param mixed $reservaMesa
+     */
+    public function setReservaMesa($reservaMesa): void
+    {
+        $this->reservaMesa = $reservaMesa;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFacturaReserva(): ?FacturaReserva
     {
         return $this->facturaReserva;
     }
@@ -145,6 +170,22 @@ class Reserva
     public function setFacturaReserva($facturaReserva): void
     {
         $this->facturaReserva = $facturaReserva;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getConsumicionReserva(): ?ConsumicionReserva
+    {
+        return $this->consumicionReserva;
+    }
+
+    /**
+     * @param mixed $consumicionReserva
+     */
+    public function setConsumicionReserva($consumicionReserva): void
+    {
+        $this->consumicionReserva = $consumicionReserva;
     }
 
 

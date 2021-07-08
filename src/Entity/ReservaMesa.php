@@ -18,12 +18,12 @@ class ReservaMesa
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Reserva", inversedBy="reserva_mesa", fetch="EAGER")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Reserva", inversedBy="reservaMesa", fetch="EAGER")
      */
     private $reserva;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Mesa", inversedBy="reserva_mesa", fetch="EAGER")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Mesa", inversedBy="reservaMesa", fetch="EAGER")
      */
     private $mesa;
 
