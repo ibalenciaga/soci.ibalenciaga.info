@@ -24,7 +24,7 @@ class ReservaController extends AbstractController
     public function index(): Response
     {
         $em = $this->getDoctrine()->getManager();
-        $reservas = $em->getRepository(Reserva::class)->findAll();
+        $reservas = $em->getRepository(Reserva::class)->findBy(array(), array('fecha' => 'ASC'));;
         foreach ($reservas as $reserva){
             //$reservaMesa= $em->getRepository(ReservaMesa::class)->findByReservaId($reserva);
             $reservaMesa= $em->getRepository(ReservaMesa::class)->findBy(array('reserva' => $reserva->getId()));
@@ -105,6 +105,10 @@ class ReservaController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $turno = $em->getRepository(Turno::class)->findAll();
         $reserva = $em->getRepository(Reserva::class)->find($id);
+        $factura_reserva = $em->getRepository(FacturaReserva::class)->findBy(array('reserva' => $reserva));
+        if(isset($factura_reserva) && $factura_reserva != null){
+            $reserva->factura = $factura_reserva;
+        }
 
         $reservaMesa= $em->getRepository(ReservaMesa::class)->findBy(array('reserva' => $reserva));
 
