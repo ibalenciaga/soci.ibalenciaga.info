@@ -23,12 +23,12 @@ class ConsumicionReserva
     private $cantidad;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Reserva", inversedBy="consumicion_reserva", fetch="EAGER")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Reserva", inversedBy="consumicionReserva", fetch="EAGER")
      */
     private $reserva;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Producto", inversedBy="consumicion_reserva", fetch="EAGER")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Producto", inversedBy="consumicionReserva", fetch="EAGER")
      */
     private $producto;
 
