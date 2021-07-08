@@ -23,7 +23,7 @@ class Turno
     private $turno;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Reserva", mappedBy="mesa")
+     * @ORM\OneToMany(targetEntity="App\Entity\Reserva", mappedBy="turno")
      */
     private $reserva;
 
