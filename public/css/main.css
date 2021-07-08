@@ -17,13 +17,54 @@ main{padding: 5rem 0;}
 footer{height: 134px;}
 footer{background-color: #0C6EFD;padding-top: 2rem;padding-bottom: 2rem;border: 4px solid;}
 footer p{margin: 0rem;}
-
+/* CONTAINER */
+.container{margin: 50px auto;}
 /* INDEX*/
 .index .btn{width:50%;margin:10px auto;padding: 20px;}
 
 /* NOTICIAS*/
 .noticias .noticia{margin:50px auto;border: 2px solid;}
 .noticias .noticia .btn{margin: 10px auto;}
+
+/* RESERVAS */
+.reservas{
+    height: auto; /* You must set a specified height */
+    width: 100%;
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+    padding-left: 5%;
+}
+.reservas.cabecera{
+    background-image: url("../images/fondo-corcho-pared-cabecera.png");
+}
+.reservas.contenido{
+    background-image: url("../images/fondo-corcho-pared-contenido.png");
+    padding: 5%;
+    padding-right: 0;
+}
+.reservas.footer{
+    background-image: url("../images/fondo-corcho-pared-footer.png");
+    height: 44px;
+}
+
+.reservas .postit{
+    display: inline-flex;
+    flex-wrap: wrap;
+    padding: 3%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.reservas .postit.comida{
+    background-image: url(../images/reservas/postit-morado.png);
+}
+
+.reservas .postit.cena{
+    background-image: url(../images/reservas/postit-azul.png);
+}
+
+
 /* MEDIA SCREEN*/
 @media only screen and (min-width: 600px) {
     .menu a img {max-height: 100px;}
