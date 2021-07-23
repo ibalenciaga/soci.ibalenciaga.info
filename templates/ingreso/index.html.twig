@@ -21,7 +21,7 @@
                 <div class="contenido col-10">
                     <p>{{ factura.reserva.fecha | date('Y-m-d') }}</p>
                     <p>{{ factura.reserva.socio.apellido1 | e }} {{ factura.reserva.socio.apellido2 | e }} {{ factura.reserva.socio.nombre | e }}</p>
-                    <p>{{ factura.precio }}€</p>
+                    <p>{{ factura.precio | number_format(2, '.', ',') }}€</p>
                 </div>
             </div>
         {% endfor %}
@@ -29,7 +29,7 @@
             <div class="contenido col-10">
                 <p></p>
                 <p></p>
-                <p>total = {{ total }}€</p>
+                <p>total = {{ total | number_format(2, '.', ',') }}€</p>
             </div>
         </div>
     </div>
