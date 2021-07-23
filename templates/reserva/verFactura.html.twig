@@ -11,29 +11,29 @@
         <hr>
         <div class="row col-12 reserva">
             <div class="contenido">
-                <div class="col-9 fecha">
+                <div class="col-4 socio">
                     <p>socio: {{ reserva.socio.apellido1 | e }} {{ reserva.socio.apellido2 | e }}, {{ reserva.socio.nombre | e }}</p>
                 </div>
-                <div class="col-3">
+                <div class="col-4 fecha">
+                    <p>día: {{ reserva.fecha | date('Y-m-d') }}</p>
+                </div>
+                <div class="col-4">
                     <p>reserva: {{ reserva.id }}</p>
                 </div>
             </div>
             <div class="contenido">
-                <div class="col-4 fecha">
-                    <p>día: {{ reserva.fecha | date('Y-m-d') }}</p>
-                </div>
                 <div class="col-4 turno">
                     <p>turno: {{ reserva.turno.turno }}</p>
                 </div>
                 <div class="col-4 comensales">
                     <p>comensales: {{ reserva.comensales }}</p>
                 </div>
-            </div>
-            <div class="contenido">
-                <div class="col-4 fecha">
-                    {% for mesas in reserva.mesas %}
-                    <p>mesas: {{ mesas.mesa.numero }}</p>
+                <div class="col-4 mesas">
+                    <p>mesas:
+                        {% for mesas in reserva.mesas %}
+                        {{ mesas.mesa.numero }},
                     {% endfor %}
+                    </p>
                 </div>
             </div>
         </div>
@@ -75,13 +75,13 @@
         <div class="row col-12 factura">
             <div class="contenido">
                 <div class="col-6 producto">
-
+                    total
                 </div>
                 <div class="col-2 cantidad">
 
                 </div>
                 <div class="col-2 precio">
-                    total=
+
                 </div>
                 <div class="col-2 total">
                     {% for factura_reserva in facturaReserva %}
