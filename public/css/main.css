@@ -39,8 +39,8 @@ footer p{margin: 0rem;}
     background-image: url("../images/fondo-corcho-pared-cabecera.png");
 }
 .reservas.contenido{
-    background-image: url("../images/fondo-corcho-pared-contenido.png");
-    padding: 5%;
+    background-image: url("../images/fondo-corcho-pared-contenido-movil.png");
+    padding: 12%;
     padding-right: 0;
 }
 .reservas.footer{
@@ -64,6 +64,10 @@ footer p{margin: 0rem;}
     background-image: url(../images/reservas/postit-azul.png);
 }
 
+/* CUENTAS */
+.cuentas .producto .nombre .id{
+    display: none;
+}
 
 /* MEDIA SCREEN*/
 @media only screen and (min-width: 600px) {
