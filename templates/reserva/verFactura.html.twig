@@ -8,6 +8,7 @@
     {{ dump(consumicionReserva) }}
     <div class="container factura">
         <h1>Factura</h1>
+        <hr>
         <div class="row col-12 reserva">
             <div class="contenido">
                 <div class="col-9 fecha">
@@ -36,18 +37,19 @@
                 </div>
             </div>
         </div>
+        <hr>
         <div class="row col-12 consumiciones">
             <div class="contenido">
                 <div class="col-6 producto">
                     <p>producto</p>
                 </div>
-                <div class="col-3 cantidad">
+                <div class="col-2 cantidad">
                     <p>cantidad</p>
                 </div>
-                <div class="col-3 precio">
+                <div class="col-2 precio">
                     <p>precio</p>
                 </div>
-                <div class="col-3 total">
+                <div class="col-2 total">
                     <p>total</p>
                 </div>
             </div>
@@ -56,25 +58,37 @@
                 <div class="col-6 producto">
                     <p>{{ consumicion_reserva.producto.nombre }}</p>
                 </div>
-                <div class="col-3 cantidad">
+                <div class="col-2 cantidad">
                     <p>{{ consumicion_reserva.cantidad }}</p>
                 </div>
-                <div class="col-3 precio">
+                <div class="col-2 precio">
                     <p>{{ consumicion_reserva.producto.precio | number_format(2, '.', ',') }}€</p>
                 </div>
-                <div class="col-3 total">
+                <div class="col-2 total">
                     {% set total = consumicion_reserva.producto.precio * consumicion_reserva.cantidad %}
                     <p>{{ total | number_format(2, '.', ',') }}€</p>
                 </div>
             </div>
             {% endfor %}
         </div>
+        <hr>
         <div class="row col-12 factura">
-            {% for factura_reserva in facturaReserva %}
             <div class="contenido">
-                <p>total= {{ factura_reserva.precio | number_format(2, '.', ',') }}€</p>
-            <div class="col-6 producto">
-            {% endfor %}
+                <div class="col-6 producto">
+
+                </div>
+                <div class="col-2 cantidad">
+
+                </div>
+                <div class="col-2 precio">
+                    total=
+                </div>
+                <div class="col-2 total">
+                    {% for factura_reserva in facturaReserva %}
+                        <p>{{ factura_reserva.precio | number_format(2, '.', ',') }}€</p>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
 
     </div>
