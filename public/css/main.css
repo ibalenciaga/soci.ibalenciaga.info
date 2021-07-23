@@ -69,6 +69,17 @@ footer p{margin: 0rem;}
     display: none;
 }
 
+.cuentas .calculos #reserva_id{
+    display: none;
+}
+
+.cuentas .calculos #reserva_precio{
+    display: none;
+}
+
+/* FACTRUAS */
+.factura .contenido{display: inline-flex}
+
 /* MEDIA SCREEN*/
 @media only screen and (min-width: 600px) {
     .menu a img {max-height: 100px;}

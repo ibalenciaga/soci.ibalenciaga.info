@@ -1,3 +1,7 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} | Reservas{% endblock %}
+
 {% block body %}
     {{ dump(reserva) }}
     {{ dump(facturaReserva) }}
@@ -50,13 +54,13 @@
             {% for consumicion_reserva in consumicionReserva %}
             <div class="contenido">
                 <div class="col-6 producto">
-                    <p>producto: {{ consumicion_reserva.producto.nombre }}</p>
+                    <p>{{ consumicion_reserva.producto.nombre }}</p>
                 </div>
                 <div class="col-3 cantidad">
-                    <p>cantidad: {{ consumicion_reserva.cantidad }}</p>
+                    <p>{{ consumicion_reserva.cantidad }}</p>
                 </div>
                 <div class="col-3 precio">
-                    <p>precio: {{ consumicion_reserva.producto.precio }}€</p>
+                    <p>{{ consumicion_reserva.producto.precio }}€</p>
                 </div>
                 <div class="col-3 total">
                     {% set total = consumicion_reserva.producto.precio * consumicion_reserva.cantidad %}
