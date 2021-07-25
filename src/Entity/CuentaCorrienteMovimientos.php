@@ -37,6 +37,11 @@ class CuentaCorrienteMovimientos
      */
     private $fecha;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $tipoPago;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -92,5 +97,17 @@ class CuentaCorrienteMovimientos
     public function setCuentaCorriente($cuentaCorriente): void
     {
         $this->cuentaCorriente = $cuentaCorriente;
+    }
+
+    public function getTipoPago(): ?int
+    {
+        return $this->tipoPago;
+    }
+
+    public function setTipoPago(?int $tipoPago): self
+    {
+        $this->tipoPago = $tipoPago;
+
+        return $this;
     }
 }
