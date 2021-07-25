@@ -238,6 +238,11 @@ class ReservaController extends AbstractController
                     $cuentaCorrienteMovimiento->setTipoPago(0);
                     $em->persist($cuentaCorrienteMovimiento);
                     $em->flush();
+
+                    //actualizar el saldo de la cuenta corriente
+                    $cuentaCorriente->setSaldo($cuentaCorriente->getSaldo() + $precio);
+                    $em->persist($cuentaCorriente);
+                    $em->flush();
                 }
             }
 
