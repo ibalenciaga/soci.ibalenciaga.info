@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\ConsumicionReserva;
+use App\Entity\CuentaCorriente;
+use App\Entity\CuentaCorrienteMovimientos;
 use App\Entity\FacturaReserva;
 use App\Entity\Mesa;
 use App\Entity\Producto;
@@ -15,6 +17,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\Date;
 
 class ReservaController extends AbstractController
 {
@@ -210,14 +213,30 @@ class ReservaController extends AbstractController
             $em->persist($factura_reserva);
             $em->flush();
 
-            foreach ($_POST['producto'] as $producto){
-                if($producto['cantidad'] != null){
+            foreach ($_POST['producto'] as $producto_utilizado){
+                if($producto_utilizado['cantidad'] != null){
                     $consumicionReserva = new ConsumicionReserva();
                     $consumicionReserva->setReserva($reserva);
-                    $producto_id = $em->getRepository(Producto::class)->find($producto['id']);
-                    $consumicionReserva->setProducto($producto_id);
-                    $consumicionReserva->setCantidad($producto['cantidad']);
+                    $producto = $em->getRepository(Producto::class)->find($producto_utilizado['id']);
+                    $consumicionReserva->setProducto($producto);
+                    $consumicionReserva->setCantidad($producto_utilizado['cantidad']);
+
                     $em->persist($consumicionReserva);
+                    $em->flush();
+                    //actualizamos el stock de este producto
+                    $producto->setStock($producto->getStock() - $producto_utilizado['cantidad']);
+                    $em->persist($producto);
+                    $em->flush();
+
+                    //crear registro en las cuentas
+                    $cuentaCorrienteMovimiento = new CuentaCorrienteMovimientos();
+                    $cuentaCorrienteMovimiento->setConcepto('reserva - ' . $reserva->getId());
+                    $cuentaCorriente = $em->getRepository(CuentaCorriente::class)->find(1);
+                    $cuentaCorrienteMovimiento->setCuentaCorriente($cuentaCorriente);
+                    $cuentaCorrienteMovimiento->setFecha(new \DateTime());
+                    $cuentaCorrienteMovimiento->setImporte($precio);
+                    $cuentaCorrienteMovimiento->setTipoPago(0);
+                    $em->persist($cuentaCorrienteMovimiento);
                     $em->flush();
                 }
             }
