@@ -9,13 +9,13 @@
     <a class="btn btn-primary" href="{{ path('crear_noticia') }}">agregar nueva noticia</a>
     {% for noticia in noticias %}
         <div class="row noticia">
-            <div class="contenido col-10">
+            <div class="contenido col-9">
                 <h2>{{ noticia.titulo | e }}</h2>
                 <p>{{ noticia.fechaPublicacion | date }}</p>
                 <p>{{ noticia.contenido | e }}</p>
                 <p>{{ noticia.socio.nombre }}</p>
             </div>
-            <div class="acciones col-2">
+            <div class="acciones col-3">
                 <div class="row">
                     <button class="btn btn-primary">eliminar</button>
                 </div>

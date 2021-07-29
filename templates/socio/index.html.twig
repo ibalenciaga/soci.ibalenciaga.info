@@ -10,7 +10,7 @@
         {% for socio in socios %}
             {% if socio.archivado == 0 %}
             <div class="row socio">
-                <div class="contenido col-10">
+                <div class="contenido col-9">
                     <h2>{{ socio.nombre | e }}</h2>
                     <p>{{ socio.apellido1 | e }}</p>
                     <p>{{ socio.apellido2 | e }}</p>
@@ -19,7 +19,7 @@
                     <p>{{ socio.direccion | e }}</p>
                     <p>{{ socio.numSocio | e }}</p>
                 </div>
-                <div class="acciones col-2">
+                <div class="acciones col-3">
                     <div class="row">
                         <a class="btn btn-primary" href="{{ path('archivar_socio', {id:socio.id}) }}">archivar</a>
                     </div>
