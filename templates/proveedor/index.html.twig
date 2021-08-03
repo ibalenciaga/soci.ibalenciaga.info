@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} | Proveedores{% endblock %}
+
+{% block body %}
+    {{ dump(proveedores) }}
+    <div class="container proveedores">
+        <h1>proveedores</h1>
+        <a class="btn btn-primary" href="{{ path('crear_proveedor') }}">agregar nuevo proveedor</a>
+        {% for proveedor in proveedores %}
+            {% if proveedor.archivado == 0 %}
+                <div class="row proveedor">
+                    <div class="contenido col-9">
+                        <h2>{{ proveedor.nombre | e }}</h2>
+                        <p>{{ proveedor.nif | e }}</p>
+                        <p>{{ proveedor.email | e }}</p>
+                        <p>{{ proveedor.direccion | e }}</p>
+                        <p>{{ proveedor.telefono | e }}</p>
+                    </div>
+                    <div class="acciones col-3">
+                        <div class="row">
+                            <a class="btn btn-primary" href="{{ path('archivar_proveedor', {id:proveedor.id}) }}">archivar</a>
+                        </div>
+                        <div class="row">
+                            <a class="btn btn-primary" href="{{ path('modificar_proveedor', {id:proveedor.id}) }}">modificar</a>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -10,6 +10,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Producto
 {
+    public function __construct(){
+        $this->archivado = 0;
+    }
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
