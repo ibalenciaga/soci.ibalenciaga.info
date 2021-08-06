@@ -40,8 +40,8 @@ footer p{margin: 0rem;}
 .reservas.contenido{background-image: url("../images/fondo-corcho-pared-contenido-movil.png");padding: 12%;padding-right: 0;}
 .reservas.footer{background-image: url("../images/fondo-corcho-pared-footer.png");height: 44px;}
 .reservas .postit{display: inline-flex;flex-wrap: wrap;padding: 3%;background-position: center;background-repeat: no-repeat;background-size: cover;}
-.reservas .postit.comida{background-image: url(../images/reservas/postit-morado.png);}
-.reservas .postit.cena{background-image: url(../images/reservas/postit-azul.png);}
+.reservas .postit.comida{background-image: url(../images/reservas/postit-morado-movil.png);}
+.reservas .postit.cena{background-image: url(../images/reservas/postit-azul-movil.png);}
 
 /* CUENTAS */
 .cuentas .producto .nombre .id{display: none;}
@@ -60,6 +60,8 @@ footer p{margin: 0rem;}
     .menu a img {max-height: 100px;}
     .container{max-width: 720px;}
     .btn.btn-primary{font-size: 16px;}
+    .reservas .postit.comida{background-image: url(../images/reservas/postit-morado.png);}
+    .reservas .postit.cena{background-image: url(../images/reservas/postit-azul.png);}
 }
 
 @media only screen and (max-width: 776px){
