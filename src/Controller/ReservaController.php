@@ -208,8 +208,8 @@ class ReservaController extends AbstractController
 
             $factura_reserva = new FacturaReserva();
             $factura_reserva->setReserva($reserva);
-            $precio = $_POST['reserva_precio'];
-            $factura_reserva->setPrecio((float)$precio);
+            $importe = $_POST['reserva_precio'];
+            $factura_reserva->setImporte((float)$importe);
             $em->persist($factura_reserva);
             $em->flush();
 
@@ -234,13 +234,13 @@ class ReservaController extends AbstractController
                     $cuentaCorriente = $em->getRepository(CuentaCorriente::class)->find(1);
                     $cuentaCorrienteMovimiento->setCuentaCorriente($cuentaCorriente);
                     $cuentaCorrienteMovimiento->setFecha(new \DateTime());
-                    $cuentaCorrienteMovimiento->setImporte($precio);
+                    $cuentaCorrienteMovimiento->setImporte($importe);
                     $cuentaCorrienteMovimiento->setTipoPago(0);
                     $em->persist($cuentaCorrienteMovimiento);
                     $em->flush();
 
                     //actualizar el saldo de la cuenta corriente
-                    $cuentaCorriente->setSaldo($cuentaCorriente->getSaldo() + $precio);
+                    $cuentaCorriente->setSaldo($cuentaCorriente->getSaldo() + $importe);
                     $em->persist($cuentaCorriente);
                     $em->flush();
                 }

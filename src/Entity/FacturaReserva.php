@@ -20,7 +20,7 @@ class FacturaReserva
     /**
      * @ORM\Column(type="decimal", precision=10, scale=2)
      */
-    private $precio;
+    private $importe;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Reserva", inversedBy="facturaReserva", fetch="EAGER")
@@ -32,16 +32,20 @@ class FacturaReserva
         return $this->id;
     }
 
-    public function getPrecio(): ?float
+    /**
+     * @return mixed
+     */
+    public function getImporte(): ?float
     {
-        return $this->precio;
+        return $this->importe;
     }
 
-    public function setPrecio(float $precio): self
+    /**
+     * @param mixed $importe
+     */
+    public function setImporte($importe): void
     {
-        $this->precio = $precio;
-
-        return $this;
+        $this->importe = $importe;
     }
 
     /**

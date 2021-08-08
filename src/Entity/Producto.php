@@ -34,7 +34,7 @@ class Producto
     /**
      * @ORM\Column(type="decimal", precision=10, scale=2)
      */
-    private $precio;
+    private $precioUnitario;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\ConsumicionReserva", mappedBy="producto")
@@ -70,15 +70,21 @@ class Producto
         return $this;
     }
 
-    public function getPrecio(): ?string
+    /**
+     * @return mixed
+     */
+    public function getPrecioUnitario()
     {
-        return $this->precio;
+        return $this->precioUnitario;
     }
 
-    public function setPrecio(string $precio): self
+    /**
+     * @param mixed $precioUnitario
+     */
+    public function setPrecioUnitario($precioUnitario): void
     {
-        $this->precio = $precio;
-
-        return $this;
+        $this->precioUnitario = $precioUnitario;
     }
+
+
 }
