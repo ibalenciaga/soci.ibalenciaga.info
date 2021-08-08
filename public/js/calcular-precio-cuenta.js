@@ -1,7 +1,8 @@
 $(document).ready(function(){
     var suma = 0;
     $('.cantidad').on("change paste keyup", function() {
-        var suma = 0;
+        var total = 0;
+        var importe = 0;
         $('.cantidad').each(function(key){
             if($(this).val() == ""){
                 var cantidad = 0;
@@ -10,14 +11,19 @@ $(document).ready(function(){
             }
 
             var precio = $(this).data("precio");
-            console.log(cantidad);
-            console.log(precio);
-            suma += parseFloat(cantidad) * parseFloat(precio);
+            var idProducto = $(this).data("producto");
+            console.log(idProducto);
+            //console.log(cantidad);
+            //console.log(precio);
+            importe = parseFloat(cantidad) * parseFloat(precio);
+            if(importe != 0)
+            $("#"+idProducto).val(importe.toFixed(2));
 
+            total += parseFloat(cantidad) * parseFloat(precio);
         });
-        console.log("suma = " + parseFloat(suma.toFixed(2)));
-        $("#total").text(suma.toFixed(2));
-        $("#reserva_precio").val(suma.toFixed(2));
+        //console.log("suma = " + parseFloat(total.toFixed(2)));
+        $("#total").text(total.toFixed(2));
+        $("#reserva_precio").val(total.toFixed(2));
     });
 
 });

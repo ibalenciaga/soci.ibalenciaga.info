@@ -9,27 +9,33 @@
         <h1>hacer cuenta</h1>
         <form name="crear_factura_reserva" action="{{ path('crear_factura_reserva', { 'id' : reserva.id }) }}" method="POST" id="crearFacturaReserva" autocomplete="off">
             <div class="row cabeceras">
-                <div class="cabecera col-8">
+                <div class="cabecera col-6">
                     <p>producto</p>
                 </div>
                 <div class="cabecera col-2">
                     <p>cantidad</p>
                 </div>
                 <div class="cabecera col-2">
-                    <p>precio</p>
+                    <p>precio unitario</p>
+                </div>
+                <div class="cabecera col-2">
+                    <p>importe</p>
                 </div>
             </div>
             {% for i, producto in productos %}
                 <div class="row producto">
-                    <div class="nombre col-8">
-                        <input type="text" class="form-control id" name="producto[{{ producto.id }}][id]" value="{{ producto.id }}">
+                    <div class="col-6">
+                        <input type="text" class="form-control id" name="producto[{{ producto.id }}][id]" value="{{ producto.id }}" >
                         <input type="text" class="form-control nombre" name="producto[{{ producto.id }}][nombre]" value="{{ producto.nombre }}">
                     </div>
                     <div class=" col-2">
-                        <input type="text" class="form-control cantidad" name="producto[{{ producto.id }}][cantidad]" data-precio="{{ producto.precio }}">
+                        <input type="text" class="form-control cantidad" name="producto[{{ producto.id }}][cantidad]" data-precio="{{ producto.precioUnitario }}" data-producto="{{ producto.id }}">
                     </div>
-                    <div class="precio col-2">
-                        <input type="text" class="form-control precio" name="producto[{{ producto.id }}][precio]" value="{{ producto.precio | number_format(2) }}">
+                    <div class="col-2">
+                        <input type="text" class="form-control precio-unitario" name="producto[{{ producto.id }}][precio-unitario]" value="{{ producto.precioUnitario | number_format(2) }}">
+                    </div>
+                    <div class="col-2">
+                        <input type="text" id="{{ producto.id }}" class="form-control precio-total importe" name="producto[{{ producto.id }}][precio-total]">
                     </div>
                 </div>
             {% endfor %}

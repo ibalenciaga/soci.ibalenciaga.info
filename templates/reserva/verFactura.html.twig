@@ -50,7 +50,7 @@
                     <p>precio</p>
                 </div>
                 <div class="col-2 total">
-                    <p>total</p>
+                    <p>importe</p>
                 </div>
             </div>
             {% for consumicion_reserva in consumicionReserva %}
@@ -62,10 +62,10 @@
                     <p>{{ consumicion_reserva.cantidad }}</p>
                 </div>
                 <div class="col-2 precio">
-                    <p>{{ consumicion_reserva.producto.precio | number_format(2, '.', ',') }}€</p>
+                    <p>{{ consumicion_reserva.producto.precioUnitario | number_format(2, '.', ',') }}€</p>
                 </div>
                 <div class="col-2 total">
-                    {% set total = consumicion_reserva.producto.precio * consumicion_reserva.cantidad %}
+                    {% set total = consumicion_reserva.producto.precioUnitario * consumicion_reserva.cantidad %}
                     <p>{{ total | number_format(2, '.', ',') }}€</p>
                 </div>
             </div>
@@ -85,7 +85,7 @@
                 </div>
                 <div class="col-2 total">
                     {% for factura_reserva in facturaReserva %}
-                        <p>{{ factura_reserva.precio | number_format(2, '.', ',') }}€</p>
+                        <p>{{ factura_reserva.importe | number_format(2, '.', ',') }}€</p>
                     {% endfor %}
                 </div>
             </div>

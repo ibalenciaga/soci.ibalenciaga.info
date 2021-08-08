@@ -28,4 +28,9 @@ $(document).ready(function(){
         $("#reserva_mesas").val(mesas);
     });
 
+    //CUENTAS
+    //desabilitar los textbox de precio unitario e importe
+    $(".importe").prop("disabled",true);
+    $(".precio-unitario").prop("disabled",true);
+
 });
