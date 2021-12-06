@@ -1,0 +1,21 @@
+TAREAS
+poner los TRY-CATCH
+poder cancelar tu reserva (el presi cancelar todas las reservas)
+agregar fotos a los socios
+pagar la cuota anual
+	-subir justificante de pago
+al hacer una reserva enviar correo de confirmacion pero antes volver a comprobar que tu reserva está libre
+info de la soci:
+	-normas
+	-estatuto
+	-reuniones
+generar informes de gastos
+al crear una nueva noticia enviar correo a todos los socios
+crear paginador
+
+al pagar una reserva quitar los productos utilizados (refrescos, vinos,....) del stock
+
+crear perfil de socio:
+	-datos personales
+	-mis reservas (incluir las historicas)
+	-mis pagos (reservas, cuota anual...)
