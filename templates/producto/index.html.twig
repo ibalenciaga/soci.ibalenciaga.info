@@ -11,7 +11,7 @@
             <div class="row producto">
                 <div class="contenido col-9">
                     <h2>producto: {{ producto.nombre | e }}</h2>
-                    <p>precio: {{ producto.precio | number_format(2, '.', ',') }}€</p>
+                    <p>precio: {{ producto.precioUnitario | number_format(2, '.', ',') }}€</p>
                     <p>stock: {{ producto.stock | e }} unidades</p>
                 </div>
                 <div class="acciones col-3">

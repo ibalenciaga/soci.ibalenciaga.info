@@ -16,12 +16,12 @@
         </div>
         {% set total = 0 %}
         {% for factura in facturaReserva %}
-            {% set total = total + factura.precio %}
+            {% set total = total + factura.importe %}
             <div class="row ingreso reserva">
                 <div class="contenido col-10">
                     <p>{{ factura.reserva.fecha | date('Y-m-d') }}</p>
                     <p>{{ factura.reserva.socio.apellido1 | e }} {{ factura.reserva.socio.apellido2 | e }} {{ factura.reserva.socio.nombre | e }}</p>
-                    <p>{{ factura.precio | number_format(2, '.', ',') }}€</p>
+                    <p>{{ factura.importe| number_format(2, '.', ',') }}€</p>
                 </div>
             </div>
         {% endfor %}
