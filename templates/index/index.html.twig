@@ -4,13 +4,15 @@
 
 {% block body %}
 <div class="container index">
-    <div class="row"><a class="btn btn-primary rojo" href="{{ path('noticia') }}">noticias</a></div>
-    <div class="row"><a class="btn btn-primary morado" href="{{ path('socio') }}">socios</a></div>
-    <div class="row"><a class="btn btn-primary azul" href="{{ path('reserva') }}">reservas</a></div>
-    <div class="row"><a class="btn btn-primary verde" href="{{ path('producto') }}">productos</a></div>
-    <div class="row"><a class="btn btn-primary verde-oscuro" href="{{ path('proveedor') }}">proveedores</a></div>
-    <div class="row"><a class="btn btn-primary amarillo" href="#">gastos</a></div>
-    <div class="row"><a class="btn btn-primary naranja" href="{{ path('ingresos') }}">ingresos</a></div>
-    <div class="row"><a class="btn btn-primary gris" href="#">pedidos</a></div>
+    <div class="row">
+        <a class="btn btn-primary rojo" href="{{ path('noticia') }}">noticias</a>
+        <a class="btn btn-primary morado" href="{{ path('socio') }}">socios</a>
+        <a class="btn btn-primary azul" href="{{ path('reserva') }}">reservas</a>
+        <a class="btn btn-primary verde" href="{{ path('producto') }}">productos</a>
+        <a class="btn btn-primary verde-oscuro" href="{{ path('proveedor') }}">proveedores</a>
+        <a class="btn btn-primary amarillo" href="#">gastos</a>
+        <a class="btn btn-primary naranja" href="{{ path('ingresos') }}">ingresos</a>
+        <a class="btn btn-primary gris" href="#">pedidos</a>
+    </div>
 </div>
 {% endblock %}
