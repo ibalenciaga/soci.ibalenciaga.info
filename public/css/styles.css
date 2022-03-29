@@ -88,12 +88,28 @@ footer .container p {
 }
 
 /* INDEX*/
-.index .btn {
-  width: 150px;
-  margin: 10px auto;
-  padding: 20px;
+.index{
+  height: calc(100vh - 404px);
 }
-
+.index .row{
+  display: grid;
+}
+.index .btn {
+  position: relative;
+  width: 400px;
+  margin: 20px auto;
+  height: 120px;
+}
+.index .btn span {
+  position: absolute;
+  top: 50%;
+  margin-top: -12px;
+  left: 50%;
+  width: 100px;
+  margin-left: -50px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
 /* NOTICIAS*/
 .noticias .noticia {
   margin: 50px auto;
@@ -168,7 +184,7 @@ footer .container p {
 }
 
 /* MEDIA SCREEN*/
-@media only screen and (min-width: 485px) {
+@media (min-width: 414px) {
   header {
     height: 134px;
   }
