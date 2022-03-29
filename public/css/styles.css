@@ -206,6 +206,9 @@ footer .container p {
   .btn.btn-primary {
     font-size: 16px;
   }
+  .index .row{
+    display: block;
+  }
 
   .reservas .postit.comida {
     background-image: url(../images/reservas/postit-morado.png);
