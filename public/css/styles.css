@@ -2,6 +2,8 @@
 header {
   width: 100%;
   border: 4px solid;
+  background-color: #0b0b0b;
+  color: #fff;
 }
 
 /* MENU */
@@ -11,56 +13,19 @@ header {
 
 /* BOTONES */
 .btn.btn-primary {
-  font-size: 26px;
+  width: 300px;
+  margin: 20px auto;
+  font-size: 30px;
+  border-radius: 50px;
+  display: grid;
+  background-color: #0b0b0b;
+  color: #fff;
 }
-
-/* BOTONES COLORES */
-.rojo {
-  background-color: #E74C3C;
-  color: #222;
-  border-color: #C0392B;
-}
-
-.morado {
-  background-color: #9B59B6;
-  color: #222;
-  border-color: #8E44AD;
-}
-
-.azul {
-  background-color: #3498DB;
-  color: #222;
-  border-color: #2980B9;
-}
-
-.verde {
-  background-color: #27AE60;
-  color: #222;
-  border-color: #16A085;
-}
-
-.verde-oscuro {
-  background-color: #1E8449;
-  color: #222;
-  border-color: #1D8348;
-}
-
-.amarillo {
-  background-color: #F1C40F;
-  color: #222;
-  border-color: #F39C12;
-}
-
-.naranja {
-  background-color: #E67E22;
-  color: #222;
-  border-color: #D35400;
-}
-
-.gris {
-  background-color: #95A5A6;
-  color: #222;
-  border-color: #7F8C8D;
+.btn.btn-primary span{
+  align-self: center;
+  justify-self: center;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 /* MAIN */
@@ -71,7 +36,8 @@ main {
 /* FOOTER */
 footer {
   height: 64px;
-  background-color: #0C6EFD;
+  background-color: #0b0b0b;
+  color: #fff;
   border: 4px solid;
 }
 footer .container {
@@ -87,28 +53,49 @@ footer .container p {
   max-width: 90%;
 }
 
+/* MEDIA SCREEN*/
+@media only screen and (min-width: 414px) {
+  header {
+    height: 134px;
+  }
+
+  footer {
+    height: 134px;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .menu a img {
+    max-height: 100px;
+  }
+
+  .container {
+    max-width: 1440px;
+  }
+  .index .row{
+    display: flex;
+  }
+
+  .reservas .postit.comida {
+    background-image: url(../images/reservas/postit-morado.png);
+  }
+
+  .reservas .postit.cena {
+    background-image: url(../images/reservas/postit-azul.png);
+  }
+}
+
 /* INDEX*/
 .index{
   min-height: calc(100vh - 404px);
 }
 .index .row{
   display: grid;
+  height: 1339px;
 }
-.index .btn {
-  position: relative;
-  width: 400px;
-  margin: 20px auto;
+.index .btn.btn-primary{
   height: 120px;
-}
-.index .btn span {
-  position: absolute;
-  top: 50%;
-  margin-top: -12px;
-  left: 50%;
-  width: 100px;
-  margin-left: -50px;
-  text-transform: uppercase;
-  font-weight: bold;
+  width: 400px;
 }
 /* NOTICIAS*/
 .noticias .noticia {
@@ -182,47 +169,4 @@ footer .container p {
 .factura .contenido {
   display: inline-flex;
 }
-
-/* MEDIA SCREEN*/
-@media (min-width: 414px) {
-  header {
-    height: 134px;
-  }
-
-  footer {
-    height: 134px;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-  }
-
-  .menu a img {
-    max-height: 100px;
-  }
-
-  .container {
-    max-width: 1440px;
-  }
-
-  .btn.btn-primary {
-    font-size: 16px;
-  }
-  .index .row{
-    display: flex;
-  }
-  .index .btn {
-    position: relative;
-    width: 300px;
-    margin: 20px auto;
-    height: 120px;
-  }
-
-  .reservas .postit.comida {
-    background-image: url(../images/reservas/postit-morado.png);
-  }
-
-  .reservas .postit.cena {
-    background-image: url(../images/reservas/postit-azul.png);
-  }
-}
-
 /*# sourceMappingURL=styles.css.map */
