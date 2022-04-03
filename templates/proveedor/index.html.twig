@@ -3,10 +3,9 @@
 {% block title %} | Proveedores{% endblock %}
 
 {% block body %}
-    {{ dump(proveedores) }}
     <div class="container proveedores">
         <h1>proveedores</h1>
-        <a class="btn btn-primary" href="{{ path('crear_proveedor') }}">agregar nuevo proveedor</a>
+        <a class="btn btn-primary" href="{{ path('crear_proveedor') }}"><span>agregar nuevo proveedor</span></a>
         {% for proveedor in proveedores %}
             {% if proveedor.archivado == 0 %}
                 <div class="row proveedor">

@@ -3,11 +3,10 @@
 {% block title %} | Reservas{% endblock %}
 
 {% block body %}
-    {{ dump(reservas) }}
-<div class="container">
+<div class="main container">
     <h1>reservas</h1>
     <div class="reservas cabecera">
-            <a class="btn btn-primary" href="{{ path('crear_reserva') }}">agregar nueva reserva</a>
+        <a class="btn btn-primary" href="{{ path('crear_reserva') }}"><span>agregar nueva reserva</span></a>
     </div>
     <div class="reservas contenido">
         {% for reserva in reservas %}

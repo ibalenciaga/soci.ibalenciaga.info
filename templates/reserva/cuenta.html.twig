@@ -3,9 +3,7 @@
 {% block title %} | Cuentas{% endblock %}
 
 {% block body %}
-    {{ dump(reserva) }}
-    {{ dump(productos) }}
-    <div class="container cuentas">
+    <div class="main container cuentas">
         <h1>hacer cuenta</h1>
         <form name="crear_factura_reserva" action="{{ path('crear_factura_reserva', { 'id' : reserva.id }) }}" method="POST" id="crearFacturaReserva" autocomplete="off">
             <div class="row cabeceras">

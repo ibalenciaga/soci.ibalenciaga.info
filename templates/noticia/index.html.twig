@@ -3,10 +3,9 @@
 {% block title %} | Noticias{% endblock %}
 
 {% block body %}
-    {{ dump(noticias) }}
 <div class="container noticias">
     <h1>noticias</h1>
-    <a class="btn btn-primary" href="{{ path('crear_noticia') }}">agregar nueva noticia</a>
+    <a class="btn btn-primary" href="{{ path('crear_noticia') }}"><span>agregar nueva noticia</span></a>
     {% for noticia in noticias %}
         <div class="row noticia">
             <div class="contenido col-9">
@@ -20,7 +19,7 @@
                     <button class="btn btn-primary">eliminar</button>
                 </div>
                 <div class="row">
-                    <a class="btn btn-primary" href="{{ path('modificar_noticia', {id:noticia.id}) }}">modificar</a>
+                    <a class="btn btn-primary" href="{{ path('modificar_noticia', {id:noticia.id}) }}"><span>modificar</span></a>
                 </div>
             </div>
         </div>

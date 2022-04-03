@@ -3,10 +3,9 @@
 {% block title %} | Socios{% endblock %}
 
 {% block body %}
-    {{ dump(socios) }}
     <div class="container socios">
         <h1>socios</h1>
-        <a class="btn btn-primary" href="{{ path('crear_socio') }}">agregar nuevo socio</a>
+        <a class="btn btn-primary" href="{{ path('crear_socio') }}"><span>agregar nuevo socio</span></a>
         {% for socio in socios %}
             {% if socio.archivado == 0 %}
             <div class="row socio">
@@ -21,10 +20,10 @@
                 </div>
                 <div class="acciones col-3">
                     <div class="row">
-                        <a class="btn btn-primary" href="{{ path('archivar_socio', {id:socio.id}) }}">archivar</a>
+                        <a class="btn btn-primary" href="{{ path('archivar_socio', {id:socio.id}) }}"><span>archivar</span></a>
                     </div>
                     <div class="row">
-                        <a class="btn btn-primary" href="{{ path('modificar_socio', {id:socio.id}) }}">modificar</a>
+                        <a class="btn btn-primary" href="{{ path('modificar_socio', {id:socio.id}) }}"><span>modificar</span></a>
                     </div>
                 </div>
             </div>
