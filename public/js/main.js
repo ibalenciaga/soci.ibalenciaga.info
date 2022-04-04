@@ -30,6 +30,7 @@ $(document).ready(function(){
 
     //CUENTAS
     //desabilitar los textbox de precio unitario e importe
+    $(".nombre").prop("disabled",true);
     $(".importe").prop("disabled",true);
     $(".precio-unitario").prop("disabled",true);
 
