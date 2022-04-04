@@ -132,10 +132,30 @@ footer .container p {
     display: none;
 }
 
-/* FACTRUAS */
+/* FACTURAS */
 .factura .contenido {
     display: inline-flex;
 }
+
+
+/* INGRESOS */
+.ingresos .ingreso{
+    width: 100%;
+    border-bottom: 1px solid;
+}
+.ingresos .ingreso p{
+    display: inline-flex;
+}
+.ingresos .ingreso p.fecha{
+    width: 20%;
+}
+.ingresos .ingreso p.concepto{
+    width: 40%;
+}
+.ingresos .ingreso p.cantidad{
+    width: 20%;
+}
+
 /*# sourceMappingURL=styles.css.map */
 
 /* MEDIA SCREEN*/

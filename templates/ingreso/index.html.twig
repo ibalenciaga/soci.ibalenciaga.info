@@ -4,32 +4,28 @@
 
 {% block body %}
     <div class="container ingresos">
-        <h1>ingresos</h1>
-        <h2>reservas</h2>
-        <div class="row ingreso reserva">
-            <div class="contenido col-10">
-                <p>fecha</p>
-                <p>socio</p>
-                <p>ingreso</p>
-            </div>
+        <h1>INGRESOS</h1>
+        <h2>Reservas</h2>
+        <div class="ingreso reserva">
+                <p class="fecha">fecha</p>
+                <p class="concepto">socio</p>
+                <p class="cantidad">ingreso</p>
         </div>
         {% set total = 0 %}
         {% for factura in facturaReserva %}
             {% set total = total + factura.importe %}
-            <div class="row ingreso reserva">
-                <div class="contenido col-10">
-                    <p>{{ factura.reserva.fecha | date('Y-m-d') }}</p>
-                    <p>{{ factura.reserva.socio.apellido1 | e }} {{ factura.reserva.socio.apellido2 | e }} {{ factura.reserva.socio.nombre | e }}</p>
-                    <p>{{ factura.importe| number_format(2, '.', ',') }}€</p>
-                </div>
+            <div class="ingreso reserva">
+                    <p class="fecha">{{ factura.reserva.fecha | date('Y-m-d') }}</p>
+                    <p class="concepto">{{ factura.reserva.socio.apellido1 | e }} {{ factura.reserva.socio.apellido2 | e }} {{ factura.reserva.socio.nombre | e }}</p>
+                    <p class="cantidad">{{ factura.importe| number_format(2, '.', ',') }}€</p>
             </div>
         {% endfor %}
-        <div class="row ingreso reserva">
-            <div class="contenido col-10">
-                <p></p>
-                <p></p>
-                <p>total = {{ total | number_format(2, '.', ',') }}€</p>
-            </div>
+        <div class="ingreso reserva total">
+                <p class="fecha"></p>
+                <p class="concepto"></p>
+                <p class="cantidad">total = {{ total | number_format(2, '.', ',') }}€</p>
         </div>
+        <h2>CUOTAS</h2>
+        <h2>...</h2>
     </div>
 {% endblock %}
