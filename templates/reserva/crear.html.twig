@@ -7,8 +7,8 @@
         <form name="reserva" action="{{ path('crear_reserva') }}" method="POST" id="crearReserva" autocomplete="off">
             <div id="reserva">
                 <div>
-                    <label for="reserva_fecha" class="required">Fecha</label>
-                    <input type="date" id="reserva_fecha" name="reserva[fecha]" required="required" class="js-datepicker form-control" value="{{ "now" | date('Y-m-d') }}">
+                    <label for="reserva_fecha" class="required">Fechaa</label>
+                    <input type="date" id="reserva_fecha" name="reserva[fecha]" required="required" class="js-datepicker form-control" value="{{ "now" | date('Y-m-d') }}" min="{{ "now" | date('Y-m-d') }}" max="{{ 'now'|date_modify("+1 month") | date('Y-m-d') }}">
                 </div>
                 <div>
                     <label for="reserva_turno_turno" class="required">Turno</label>

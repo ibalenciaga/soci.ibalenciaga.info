@@ -1,11 +1,4 @@
 $(document).ready(function(){
-    //inicializar las opciones del datepicker
-    $('.js-datepicker').datepicker({
-        format: 'yyyy-mm-dd',
-        showOn: 'button',
-        buttonImageOnly: true,
-    });
-
     //desabilitar el boton de reservar
     $("#reserva_reservar").prop("disabled",true);
 
