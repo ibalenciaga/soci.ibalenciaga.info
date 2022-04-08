@@ -5,12 +5,12 @@
 {% block body %}
     <div class="main container">
         <form name="reserva" action="{{ path('crear_reserva') }}" method="POST" id="crearReserva" autocomplete="off">
-            <div id="reserva">
-                <div>
-                    <label for="reserva_fecha" class="required">Fechaa</label>
+            <div id="reserva" class="reserva">
+                <div class="campo">
+                    <label for="reserva_fecha" class="required">Fecha</label>
                     <input type="date" id="reserva_fecha" name="reserva[fecha]" required="required" class="js-datepicker form-control" value="{{ "now" | date('Y-m-d') }}" min="{{ "now" | date('Y-m-d') }}" max="{{ 'now'|date_modify("+1 month") | date('Y-m-d') }}">
                 </div>
-                <div>
+                <div class="campo">
                     <label for="reserva_turno_turno" class="required">Turno</label>
                     <select id="reserva_turno_turno" name="reserva[turno][turno]" class="form-control">
                         {% for turno in turnos %}
@@ -18,18 +18,32 @@
                         {% endfor %}
                     </select>
                 </div>
-                <div>
-                    <button type="button" id="reserva_buscar-mesa" name="reserva[buscar-mesa]" class="btn btn-primary">Buscar-mesa</button>
-                </div>
-                <div id="mesas-libres">
-
-                </div>
-                <div>
+                <div class="campo">
                     <label for="reserva_comensales" class="required">Comensales</label>
                     <input type="text" id="reserva_comensales" name="reserva[comensales]" required="required" class="form-control"></div>
 
+                <div>
+                    <button type="button" id="reserva_buscar-mesa" name="reserva[buscar-mesa]" class="btn btn-primary">Buscar-mesa</button>
+                </div>
+                <div id="mesas-libres" class="mesas-libres">
+                    <div class="plano plano-cocina">
+                        <img src="{{ asset('/images/reservas/plano-cocina.png') }}">
+                        <div class="mesa vertical mesa-1" data-mesa="1"></div>
+                        <div class="mesa vertical mesa-2" data-mesa="2"></div>
+                        <div class="mesa vertical mesa-3" data-mesa="3"></div>
+                        <div class="mesa vertical mesa-4" data-mesa="4"></div>
+                        <div class="mesa vertical mesa-5" data-mesa="5"></div>
+                    </div>
+                    <div class="plano plano-fondo">
+                        <img src="{{ asset('/images/reservas/plano-fondo.png') }}">
+                        <div class="mesa vertical mesa-6" data-mesa="6"></div>
+                        <div class="mesa vertical mesa-7" data-mesa="7"></div>
+                        <div class="mesa horizontal mesa-8" data-mesa="8"></div>
+                        <div class="mesa vertical mesa-9" data-mesa="9"></div>
+                        <div class="mesa vertical mesa-10" data-mesa="10"></div>
+                    </div>
+                </div>
                 <button type="submit" class="btn btn-primary" name="submit" value="submit" form="crearReserva">reservar</button>
-
             </div>
         </form>
     </div>

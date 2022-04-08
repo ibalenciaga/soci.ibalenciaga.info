@@ -118,6 +118,77 @@ footer .container p {
 .reservas .postit.cena {
     background-image: url(../images/reservas/postit-azul-movil.png);
 }
+.reserva{
+    text-align: center;
+}
+.reserva .campo{
+    display: inline-block;
+}
+.reserva .checkbox-mesas{
+    display: none;
+}
+.mesas-libres {
+    display: grid;
+}
+.mesas-libres .plano{
+    position: relative;
+    padding: 30px;
+    border: 3px solid;
+    border-radius: 10px;
+    margin: 20px auto;
+}
+.mesas-libres .plano img{
+    max-width: 250px;
+}
+.mesas-libres .plano .mesa{
+    border: 3px solid;
+    border-radius: 8px;
+    position: absolute;
+    opacity: 0.6;
+}
+.mesas-libres .plano .mesa.vertical{
+    height: 148px;
+    width: 63px;
+}
+.mesas-libres .plano .mesa.horizontal{
+    height: 63px;
+    width: 149px;
+}
+.mesas-libres .plano .mesa.vertical.mesa-1{
+    top: 33px;
+}
+.mesas-libres .plano .mesa.vertical.mesa-2{
+    top: 204px;
+}
+.mesas-libres .plano .mesa.vertical.mesa-3{
+    top: 379px;
+}
+.mesas-libres .plano .mesa.vertical.mesa-4{
+    top: 204px;
+    right: 30px;
+}
+.mesas-libres .plano .mesa.vertical.mesa-5{
+    top: 379px;
+    right: 30px;
+}
+.mesas-libres .plano .mesa.vertical.mesa-6{
+    top: 375px;
+}
+.mesas-libres .plano .mesa.vertical.mesa-7{
+    top: 200px;
+}
+.mesas-libres .plano .mesa.horizontal.mesa-8{
+    top: 101px;
+    left: 81px;
+}
+.mesas-libres .plano .mesa.vertical.mesa-9{
+    top: 200px;
+    right: 30px;
+}
+.mesas-libres .plano .mesa.vertical.mesa-10{
+    top: 375px;
+    right: 30px;
+}
 
 /* CUENTAS */
 .cuentas .producto .id {
@@ -201,5 +272,57 @@ footer .container p {
 
     .reservas .postit.cena {
         background-image: url(../images/reservas/postit-azul.png);
+    }
+}
+
+@media only screen and (min-width: 900px) {
+    .mesas-libres {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .mesas-libres .plano{
+        margin: auto;
+    }
+    .mesas-libres .plano img{
+        max-width: 350px;
+    }
+    .mesas-libres .plano .mesa.vertical {
+        height: 207px;
+        width: 87px;
+    }
+    .mesas-libres .plano .mesa.horizontal {
+        height: 87px;
+        width: 207px;
+    }
+    .mesas-libres .plano .mesa.vertical.mesa-2{
+        top: 274px;
+    }
+    .mesas-libres .plano .mesa.vertical.mesa-3{
+        top: 518px;
+    }
+    .mesas-libres .plano .mesa.vertical.mesa-4{
+        top: 274px;
+    }
+    .mesas-libres .plano .mesa.vertical.mesa-5{
+        top: 518px;
+    }
+    .mesas-libres .plano .mesa.vertical.mesa-6{
+        top: 513px;
+    }
+    .mesas-libres .plano .mesa.vertical.mesa-7{
+        top: 269px;
+    }
+    .mesas-libres .plano .mesa.horizontal.mesa-8{
+        top: 129px;
+        left: 101px;
+    }
+    .mesas-libres .plano .mesa.vertical.mesa-9{
+        top: 269px;
+        right: 30px;
+    }
+    .mesas-libres .plano .mesa.vertical.mesa-10{
+        top: 513px;
+        right: 30px;
     }
 }
