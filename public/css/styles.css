@@ -130,6 +130,7 @@ footer .container p {
 
 .reserva .campo {
   display: flex;
+  margin: 10px auto;
 }
 
 .reserva .campo label {
