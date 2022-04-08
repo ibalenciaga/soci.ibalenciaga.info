@@ -129,7 +129,14 @@ footer .container p {
 }
 
 .reserva .campo {
-  display: inline-block;
+  display: flex;
+}
+
+.reserva .campo label {
+  width: 90%;
+  text-align: left;
+  display: grid;
+  align-self: center;
 }
 
 .reserva .checkbox-mesas {
@@ -305,6 +312,14 @@ footer .container p {
   }
 }
 @media only screen and (min-width: 900px) {
+  .reserva .campo {
+    display: inline-block;
+  }
+
+  .reserva .campo label {
+    width: auto;
+  }
+
   .mesas-libres {
     display: flex;
     justify-content: center;
